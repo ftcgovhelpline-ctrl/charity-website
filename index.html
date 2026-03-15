@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hope for the Children — Iran & Middle East</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C8922A;
+    --gold-light: #E8B96A;
+    --terra: #B5532A;
+    --cream: #FAF5EC;
+    --warm-white: #FDF9F3;
+    --charcoal: #1C1710;
+    --text: #2E2416;
+    --muted: #7A6A50;
+    --border: rgba(200, 146, 42, 0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250, 245, 236, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--terra); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: #fff; border: none;
+    padding: 0.65rem 1.8rem; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.1s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--terra); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 5rem 5rem 4rem;
+    background: var(--warm-white);
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 500; color: var(--gold);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 2.5rem; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.15; color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+    max-width: 480px; margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: #fff; border: none;
+    padding: 1rem 2.5rem; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--terra); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,146,42,0.3); }
+  .btn-secondary {
+    background: transparent; color: var(--charcoal);
+    border: 1.5px solid var(--charcoal);
+    padding: 1rem 2.5rem; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; color: var(--gold);
+  }
+  .hero-stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #8B4513 0%, #C8922A 40%, #E8B96A 70%, #F5DEB3 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(181,83,42,0.3) 0%, transparent 50%);
+  }
+  .hero-geometric {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .geo-circle {
+    width: 420px; height: 420px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    animation: slowSpin 40s linear infinite;
+  }
+  .geo-circle::before {
+    content: ''; position: absolute; inset: 30px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+  }
+  .geo-circle::after {
+    content: ''; position: absolute; inset: 80px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+  }
+  @keyframes slowSpin { to { transform: rotate(360deg); } }
+  .geo-inner {
+    width: 200px; height: 200px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%; backdrop-filter: blur(4px);
+    animation: slowSpin 40s linear reverse infinite;
+  }
+  .geo-icon { font-size: 4rem; animation: pulse 3s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  .geo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; color: rgba(255,255,255,0.9);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5rem;
+  }
+  .hero-quote {
+    position: absolute; bottom: 3rem; left: 2rem; right: 2rem;
+    background: rgba(28,23,16,0.6); backdrop-filter: blur(8px);
+    border-left: 3px solid var(--gold-light);
+    padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0;
+    color: rgba(255,255,255,0.9);
+  }
+  .hero-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic; line-height: 1.5;
+  }
+  .hero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; color: var(--gold);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content:''; width:2rem; height:1px; background:var(--gold); display:block; }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+    color: var(--charcoal); line-height: 1.2;
+  }
+  h2 em { color: var(--gold); font-style: italic; }
+
+  /* ── IMPACT AREAS ── */
+  .impact { background: var(--warm-white); }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .impact-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--cream);
+    transition: all 0.3s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .impact-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--terra));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .impact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
+  .impact-card:hover::before { transform: scaleX(1); }
+  .impact-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .impact-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--charcoal);
+  }
+  .impact-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── DONATE ── */
+  .donate-section {
+    background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .donate-left h2 { color: var(--cream); }
+  .donate-left p { color: rgba(250,245,236,0.65); font-size: 1rem; line-height: 1.7; margin-top: 1rem; }
+  .trust-badges { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
+  .trust-badge {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem; border-radius: 4px;
+    background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.2);
+  }
+  .trust-badge-icon { font-size: 1.4rem; }
+  .trust-badge-text { font-size: 0.85rem; color: rgba(250,245,236,0.75); line-height: 1.4; }
+  .trust-badge-text strong { color: var(--gold-light); font-weight: 500; }
+  .donate-form {
+    background: var(--cream); border-radius: 6px; padding: 2.5rem;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 0.4rem;
+  }
+  .form-subtitle { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+  .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .amount-btn {
+    padding: 0.85rem; border-radius: 3px;
+    border: 1.5px solid var(--border); background: var(--warm-white);
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600;
+    color: var(--charcoal); cursor: pointer; transition: all 0.2s; text-align: center;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    border-color: var(--gold); background: rgba(200,146,42,0.08); color: var(--gold);
+  }
+  .amount-btn small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
+  .custom-amount {
+    margin-bottom: 1.5rem;
+  }
+  .custom-amount label { font-size: 0.78rem; font-weight: 500; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+  .input-wrap { position: relative; }
+  .input-wrap span {
+    position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+    color: var(--gold); font-weight: 600; font-size: 1rem;
+  }
+  .custom-amount input {
+    width: 100%; padding: 0.85rem 1rem 0.85rem 2rem;
+    border: 1.5px solid var(--border); border-radius: 3px;
+    background: var(--warm-white); font-size: 1rem; color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s;
+  }
+  .custom-amount input:focus { border-color: var(--gold); }
+  .frequency-toggle {
+    display: flex; border: 1.5px solid var(--border); border-radius: 3px;
+    overflow: hidden; margin-bottom: 1.5rem;
+  }
+  .freq-btn {
+    flex: 1; padding: 0.7rem; border: none; background: var(--warm-white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    color: var(--muted); cursor: pointer; transition: all 0.2s;
+  }
+  .freq-btn.active { background: var(--gold); color: #fff; }
+  .donate-btn {
+    width: 100%; padding: 1.1rem; background: var(--gold);
+    border: none; border-radius: 3px; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  .donate-btn:hover { background: var(--terra); box-shadow: 0 8px 24px rgba(200,146,42,0.3); }
+  .secure-note {
+    text-align: center; font-size: 0.75rem; color: var(--muted);
+    margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+
+  /* ── STORIES ── */
+  .stories { background: var(--cream); }
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .story-card {
+    background: var(--warm-white); border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--border); transition: all 0.3s;
+  }
+  .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
+  .story-visual {
+    height: 350px; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+  }
+  .story-visu{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
+  .story-card:nth-child(1) .story-visual { background: linear-gradient(135deg, #F5DEB3, #C8922A); }
+  .story-card:nth-child(2) .story-visual { background: linear-gradient(135deg, #E8C4A0, #B5532A); }
+  .story-card:nth-child(3) .story-visual { background: linear-gradient(135deg, #D4A574, #8B4513); }
+  .story-body { padding: 1.75rem; }
+  .story-tag {
+    font-size: 0.7rem; font-weight: 500; color: var(--gold);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .story-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 0.75rem; line-height: 1.3;
+  }
+  .story-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .story-progress { padding: 1.25rem 1.75rem; border-top: 1px solid var(--border); }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 0.6rem; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--terra)); border-radius: 2px; }
+  .progress-text { font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .progress-text strong { color: var(--gold); }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--warm-white); }
+  .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3.5rem; position: relative; }
+  .how-steps::before {
+    content: ''; position: absolute; top: 2.5rem; left: 12.5%; right: 12.5%;
+    height: 1px; background: linear-gradient(90deg, var(--gold), var(--terra), var(--gold));
+    z-index: 0;
+  }
+  .how-step { text-align: center; padding: 0 1.5rem; position: relative; z-index: 1; }
+  .step-num {
+    width: 5rem; height: 5rem; border-radius: 50%;
+    background: var(--cream); border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--gold);
+  }
+  .how-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .how-step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: linear-gradient(135deg, #8B4513 0%, #C8922A 50%, #E8B96A 100%);
+    text-align: center;
+  }
+  .testimonials .section-label { justify-content: center; }
+  .testimonials .section-label::before { display: none; }
+  .testimonials h2 { color: #fff; margin: 0 auto 3rem; max-width: 600px; }
+  .testimonials h2 em { color: rgba(255,255,255,0.7); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card {
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
+    padding: 2rem; text-align: left;
+  }
+  .testimonial-stars { color: var(--gold-light); margin-bottom: 1rem; font-size: 0.9rem; }
+  .testimonial-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic; color: rgba(255,255,255,0.9);
+    line-height: 1.65; margin-bottom: 1.25rem;
+  }
+  .testimonial-author { font-size: 0.8rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+  .testimonial-author strong { color: rgba(255,255,255,0.9); font-weight: 500; display: block; }
+
+  /* ── NEWSLETTER ── */
+  .newsletter { background: var(--cream); text-align: center; padding: 5rem 4rem; }
+  .newsletter h2 { margin: 0.75rem auto 1rem; max-width: 500px; }
+  .newsletter p { color: var(--muted); margin-bottom: 2rem; }
+  .newsletter-form { display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto; }
+  .newsletter-form input {
+    flex: 1; padding: 0.9rem 1.25rem;
+    border: 1.5px solid var(--border); border-radius: 2px;
+    background: var(--warm-white); font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; color: var(--charcoal); outline: none;
+    transition: border-color 0.2s;
+  }
+  .newsletter-form input:focus { border-color: var(--gold); }
+  .newsletter-form button {
+    padding: 0.9rem 1.75rem; background: var(--gold); color: #fff;
+    border: none; border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .newsletter-form button:hover { background: var(--terra); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(250,245,236,0.6);
+    padding: 3.5rem 4rem 2rem; font-size: 0.85rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 3rem; border-bottom: 1px solid rgba(200,146,42,0.15);
+    margin-bottom: 2rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.3rem; display: block; margin-bottom: 1rem; }
+  .footer-brand p { line-height: 1.65; }
+  footer h4 {
+    font-size: 0.75rem; font-weight: 500; color: var(--gold-light);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem;
+  }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  footer a { color: rgba(250,245,236,0.6); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold-light); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
+  .footer-bottom p { color: rgba(250,245,236,0.35); }
+  .footer-legal { display: flex; gap: 2rem; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 50vh; }
+    .hero-left { padding: 8rem 2rem 3rem; }
+    .impact-grid, .how-steps { grid-template-columns: repeat(2,1fr); }
+    .how-steps::before { display: none; }
+    .stories-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .donate-section { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    section { padding: 4rem 2rem; }
+    .donate-section { padding: 4rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .amount-grid { grid-template-columns: repeat(2,1fr); }
+    .newsletter-form { flex-direction: column; }
+    .footer-top { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--charcoal); padding: 6rem 4rem; }
+  .gallery .section-label { color: var(--gold-light); }
+  .gallery h2 { color: var(--cream); margin-bottom: 0.75rem; }
+  .gallery-subtitle { color: rgba(250,245,236,0.55); font-size: 0.95rem; margin-bottom: 3rem; max-width: 540px; }
+
+  .gallery-upload-bar {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.5rem; flex-wrap: wrap;
+  }
+  .upload-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.8rem 1.75rem; border-radius: 2px;
+    background: rgba(200,146,42,0.15); border: 1.5px solid var(--gold);
+    color: var(--gold-light); font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .upload-btn:hover { background: rgba(200,146,42,0.28); }
+  .upload-btn svg { width: 16px; height: 16px; }
+  #fileInput { display: none; }
+  .gallery-filter-tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .filter-tab {
+    padding: 0.5rem 1.2rem; border-radius: 2px;
+    border: 1px solid rgba(200,146,42,0.25);
+    background: transparent; color: rgba(250,245,236,0.5);
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-tab.active, .filter-tab:hover {
+    background: var(--gold); color: #fff; border-color: var(--gold);
+  }
+
+  /* Masonry grid */
+  .gallery-grid {
+    columns: 4; column-gap: 1rem;
+  }
+  .gallery-item {
+    break-inside: avoid; margin-bottom: 1rem;
+    position: relative; overflow: hidden; border-radius: 3px;
+    cursor: pointer; display: block;
+  }
+  .gallery-item .g-img {
+    width: 100%; display: block;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    border-radius: 3px;
+  }
+  .gallery-item:hover .g-img { transform: scale(1.04); }
+  .gallery-item .g-overlay {
+    position: absolute; inset: 0; border-radius: 3px;
+    background: linear-gradient(to top, rgba(28,23,16,0.85) 0%, transparent 55%);
+    opacity: 0; transition: opacity 0.3s; display: flex;
+    flex-direction: column; justify-content: flex-end; padding: 1.25rem;
+  }
+  .g-imgs{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .gallery-item:hover .g-overlay { opacity: 1; }
+  .g-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: #fff; line-height: 1.35;
+    margin-bottom: 0.3rem;
+  }
+  .g-tag {
+    font-size: 0.7rem; color: var(--gold-light);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .g-zoom-icon {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(200,146,42,0.85); display: flex; align-items: center;
+    justify-content: center; opacity: 0; transition: opacity 0.3s;
+    color: #fff; font-size: 0.9rem;
+  }
+  .gallery-item:hover .g-zoom-icon { opacity: 1; }
+
+  /* Empty state */
+  .gallery-empty {
+    text-align: center; padding: 4rem 2rem;
+    border: 2px dashed rgba(200,146,42,0.2); border-radius: 6px;
+    color: rgba(250,245,236,0.35);
+  }
+  .gallery-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .gallery-empty p { font-size: 0.9rem; line-height: 1.6; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(16,12,8,0.97);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    flex-direction: column;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox-inner {
+    position: relative; max-width: 90vw; max-height: 80vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lightbox-img {
+    max-width: 90vw; max-height: 75vh;
+    border-radius: 4px; object-fit: contain;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+    transform: scale(0.95); transition: transform 0.3s;
+  }
+  .lightbox.open .lightbox-img { transform: scale(1); }
+  .lightbox-info {
+    margin-top: 1.5rem; text-align: center;
+  }
+  .lightbox-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--cream); font-style: italic;
+  }
+  .lightbox-tag { font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+  .lightbox-close {
+    position: fixed; top: 1.5rem; right: 2rem;
+    background: none; border: none; color: rgba(250,245,236,0.6);
+    font-size: 2rem; cursor: pointer; line-height: 1;
+    transition: color 0.2s; z-index: 10;
+  }
+  .lightbox-close:hover { color: var(--gold-light); }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3);
+    border-radius: 2px; color: var(--gold-light);
+    font-size: 1.5rem; padding: 1rem 0.75rem; cursor: pointer;
+    transition: all 0.2s; line-height: 1;
+  }
+  .lightbox-nav:hover { background: rgba(200,146,42,0.35); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+  .lightbox-counter {
+    position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.78rem; color: rgba(250,245,236,0.4); letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 1024px) { .gallery-grid { columns: 3; } .gallery { padding: 4rem 2rem; } }
+  @media (max-width: 700px) { .gallery-grid { columns: 2; } }
+  @media (max-width: 480px) { .gallery-grid { columns: 1; } }
+
+  .curr-btn {
+    padding: 0.45rem 0.9rem; border-radius: 2px;
+    border: 1.5px solid var(--border); background: var(--warm-white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500;
+    color: var(--muted); cursor: pointer; transition: all 0.2s;
+  }
+  .curr-btn.active, .curr-btn:hover {
+    border-color: var(--gold); background: rgba(200,146,42,0.1); color: var(--gold);
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(28,23,16,0.75);
+    z-index: 1000; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--cream); border-radius: 6px; padding: 2.5rem;
+    max-width: 420px; width: 90%; text-align: center;
+    transform: translateY(20px); transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .modal h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .modal p { color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
+  .modal-close {
+    background: var(--gold); color: #fff; border: none;
+    padding: 0.8rem 2rem; border-radius: 2px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--terra); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hope <span>for</span> the Children</div>
+  <ul class="nav-links">
+    <li><a href="#impact">Our Mission</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#about">About Us</a></li>
+  </ul>
+  <a href="#donate" class="nav-cta">Donate Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Iran & the Middle East</div>
+    <h1>Every child deserves a <em>future</em> free from war</h1>
+    <p class="hero-sub">We bring food, medicine, education, and hope to children caught in conflict across Iran and the Middle East. Your gift reaches those who need it most.</p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Give Now</a>
+      <a href="#stories" class="btn-secondary">See Impact</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">12,400+</div>
+        <div class="hero-stat-label">Children Helped</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Countries Reached</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">94¢</div>
+        <div class="hero-stat-label">Of Every Dollar to Children</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-geometric">
+      <div class="geo-circle">
+        <div class="geo-inner">
+         <img src="assets\WhatsApp Image 2026-03-12 at 20.13.14.jpeg">
+          <div class="geo-text">Peace</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-quote">
+      <p>"No child should ever know the sound of bombs instead of laughter."</p>
+      <cite>— Dr. Leila Nazari, Field Director, Tehran</cite>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT AREAS -->
+<section class="impact fade-up" id="impact">
+  <div class="section-label">Our Mission</div>
+  <h2>Where your <em>generosity</em> goes</h2>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">🍞</div>
+      <h3>Food & Clean Water</h3>
+      <p>Daily nutritious meals and clean drinking water for children suffering from malnutrition and displacement in conflict zones.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🏥</div>
+      <h3>Medical Care</h3>
+      <p>Emergency healthcare, trauma treatment, vaccinations, and ongoing support for injured and sick children in underserved regions.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🏫</div>
+      <h3>Education & Shelter</h3>
+      <p>Safe learning environments, temporary housing, and school supplies so children can rebuild their lives and look toward the future.</p>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">💛</div>
+      <h3>Mental Health Support</h3>
+      <p>Trauma counseling, play therapy, and psychosocial support to help children heal from the invisible wounds of war.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE SECTION -->
+<section class="donate-section" id="donate">
+  <div class="donate-left fade-up">
+    <div class="section-label" style="color:var(--gold-light)">Make a Difference</div>
+    <h2>Your gift <em>changes</em> everything</h2>
+    <p>Every dollar you give goes directly to children in need. We work with trusted on-the-ground partners across Iran, Syria, Yemen, Gaza, Lebanon, Iraq, and Afghanistan.</p>
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🔒</div>
+        <div class="trust-badge-text"><strong>Secure & Encrypted</strong> — All transactions are fully protected by bank-grade security</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">✅</div>
+        <div class="trust-badge-text"><strong>Fully Transparent</strong> — Audited annually. View our financial reports anytime.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🌍</div>
+        <div class="trust-badge-text"><strong>Tax Deductible</strong> — We are a registered 501(c)(3) nonprofit organization.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FLUTTERWAVE DONATION FORM ══ -->
+  <div class="donate-form fade-up" id="flutterwaveWrap">
+
+    <!-- ⚙️ SETUP NOTICE — hidden once public key is saved -->
+    <div id="flwSetupNotice" style="background:rgba(200,146,42,0.08);border:1.5px dashed var(--gold);border-radius:4px;padding:1.5rem;margin-bottom:1.5rem;">
+      <div style="font-size:1.05rem;margin-bottom:0.5rem;">⚙️ <strong style="color:var(--charcoal)">Activate Flutterwave Payments</strong></div>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;">
+        Paste your <strong>Flutterwave Public Key</strong> below.<br>
+        Find it at: <strong>dashboard.flutterwave.com → Settings → API Keys</strong>
+      </p>
+      <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+        <input id="flwKeyInput" type="text" placeholder="FLWPUBK-xxxxxxxxxxxxxxxx-X"
+          style="flex:1;padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:2px;
+          font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--charcoal);
+          background:var(--warm-white);outline:none;min-width:200px;">
+        <button onclick="saveFlwKey()"
+          style="padding:0.7rem 1.4rem;background:var(--gold);color:#fff;border:none;
+          border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.85rem;
+          font-weight:500;cursor:pointer;white-space:nowrap;">Save Key →</button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:0.75rem;">
+        🔒 Your key is stored only in this browser. Never share your <em>secret</em> key.
+      </p>
+    </div>
+
+    <!-- DONATION FORM UI -->
+    <div id="flwForm">
+      <div class="form-title">Choose Your Gift</div>
+      <div class="form-subtitle">Accepted worldwide · Settles in NGN to your bank</div>
+
+      <!-- Currency selector -->
+      <div style="margin-bottom:1.25rem;">
+        <label style="font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;display:block;margin-bottom:0.5rem;">Donate In</label>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;" id="currencyBtns">
+          <button class="curr-btn active" onclick="setCurrency(this,'USD','$')">🇺🇸 USD</button>
+          <button class="curr-btn" onclick="setCurrency(this,'GBP','£')">🇬🇧 GBP</button>
+          <button class="curr-btn" onclick="setCurrency(this,'EUR','€')">🇪🇺 EUR</button>
+          <button class="curr-btn" onclick="setCurrency(this,'NGN','₦')">🇳🇬 NGN</button>
+          <button class="curr-btn" onclick="setCurrency(this,'CAD','C$')">🇨🇦 CAD</button>
+        </div>
+      </div>
+
+      <!-- Frequency -->
+      <div class="frequency-toggle" style="margin-bottom:1.25rem;">
+        <button class="freq-btn active" onclick="setFreq(this,'once')">One-time</button>
+        <button class="freq-btn" onclick="setFreq(this,'monthly')">Monthly</button>
+      </div>
+
+      <!-- Preset amounts -->
+      <div class="amount-grid" id="amountGrid" style="margin-bottom:1.25rem;">
+        <button class="amount-btn active" onclick="setAmt(this,25)"><span class="amt-symbol">$</span>25<small>Feeds 3 kids/week</small></button>
+        <button class="amount-btn" onclick="setAmt(this,50)"><span class="amt-symbol">$</span>50<small>Medical supplies</small></button>
+        <button class="amount-btn" onclick="setAmt(this,100)"><span class="amt-symbol">$</span>100<small>School kit + books</small></button>
+        <button class="amount-btn" onclick="setAmt(this,250)"><span class="amt-symbol">$</span>250<small>Emergency shelter</small></button>
+        <button class="amount-btn" onclick="setAmt(this,500)"><span class="amt-symbol">$</span>500<small>Full month of care</small></button>
+        <button class="amount-btn" onclick="setAmt(this,'custom')"><span class="amt-symbol">$</span>Other<small>Custom amount</small></button>
+      </div>
+
+      <!-- Custom amount -->
+      <div id="customWrap" style="display:none;margin-bottom:1.25rem;">
+        <label style="font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;display:block;margin-bottom:0.5rem;">Custom Amount</label>
+        <div class="input-wrap">
+          <span id="customSymbol">$</span>
+          <input type="number" id="customAmt" placeholder="Enter amount" min="1"
+            style="width:100%;padding:0.85rem 1rem 0.85rem 2rem;border:1.5px solid var(--border);
+            border-radius:3px;background:var(--warm-white);font-size:1rem;color:var(--charcoal);
+            font-family:'DM Sans',sans-serif;outline:none;" oninput="updatePayBtn()">
+        </div>
+      </div>
+
+      <!-- Donor details -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;">
+        <div>
+          <label style="font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;display:block;margin-bottom:0.4rem;">First Name</label>
+          <input id="donorFirst" type="text" placeholder="Amira"
+            style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:3px;
+            background:var(--warm-white);font-family:'DM Sans',sans-serif;font-size:0.9rem;
+            color:var(--charcoal);outline:none;">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;display:block;margin-bottom:0.4rem;">Last Name</label>
+          <input id="donorLast" type="text" placeholder="Hassan"
+            style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:3px;
+            background:var(--warm-white);font-family:'DM Sans',sans-serif;font-size:0.9rem;
+            color:var(--charcoal);outline:none;">
+        </div>
+      </div>
+      <div style="margin-bottom:1.25rem;">
+        <label style="font-size:0.75rem;font-weight:500;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;display:block;margin-bottom:0.4rem;">Email Address</label>
+        <input id="donorEmail" type="email" placeholder="your@email.com"
+          style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:3px;
+          background:var(--warm-white);font-family:'DM Sans',sans-serif;font-size:0.9rem;
+          color:var(--charcoal);outline:none;">
+      </div>
+
+      <!-- Pay button -->
+      <button class="donate-btn" id="payBtn" onclick="launchFlutterwave()">
+        Donate <span id="payBtnLabel">$25</span> Securely →
+      </button>
+
+      <div class="secure-note" style="margin-top:1rem;">
+        🔒 Powered by Flutterwave · Cards, Bank Transfer, Mobile Money, USSD
+      </div>
+
+      <!-- Payment method icons -->
+      <div style="display:flex;justify-content:center;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;">
+        <span style="background:var(--warm-white);border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;font-size:0.72rem;color:var(--muted);font-weight:500;">VISA</span>
+        <span style="background:var(--warm-white);border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;font-size:0.72rem;color:var(--muted);font-weight:500;">Mastercard</span>
+        <span style="background:var(--warm-white);border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;font-size:0.72rem;color:var(--muted);font-weight:500;">Bank Transfer</span>
+        <span style="background:var(--warm-white);border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;font-size:0.72rem;color:var(--muted);font-weight:500;">Mobile Money</span>
+        <span style="background:var(--warm-white);border:1px solid var(--border);border-radius:3px;padding:0.3rem 0.6rem;font-size:0.72rem;color:var(--muted);font-weight:500;">USSD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories fade-up" id="stories">
+  <div class="section-label">Stories of Hope</div>
+  <h2>Children whose lives you have <em>touched</em></h2>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-visual"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.13.jpeg" class="story-visu"></div>
+      <div class="story-body">
+        <div class="story-tag">Tehran, Iran</div>
+        <h3>Maryam, Age 8</h3>
+        <p>Displaced after conflict, Maryam hadn't been to school in two years. Thanks to supporters like you, she's now learning to read and dreams of becoming a doctor.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+        <div class="progress-text"><span>$3,900 raised</span><strong>of $5,000</strong></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets\1000366571.jpg" class="story-visu"></div>
+      <div class="story-body">
+        <div class="story-tag">Aleppo, Syria</div>
+        <h3>Omar, Age 11</h3>
+        <p>Omar survived a bombing that destroyed his home. Our medical team provided surgery and rehabilitation. Today he plays football and attends our learning center.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+        <div class="progress-text"><span>$6,200 raised</span><strong>of $10,000</strong></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.12 (1).jpeg" class="story-visu"></div>
+      <div class="story-body">
+        <div class="story-tag">Sana'a, Yemen</div>
+        <h3>Fatima & her siblings</h3>
+        <p>A mother of four, Fatima struggled to feed her children. Monthly food parcels from our program now ensure her family never goes to bed hungry.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-bar"><div class="progress-fill" style="width:91%"></div></div>
+        <div class="progress-text"><span>$9,100 raised</span><strong>of $10,000</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how fade-up" id="how">
+  <div class="section-label">Process</div>
+  <h2 style="text-align:center;margin-bottom:0">How your <em>donation</em> works</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <h3>You Give</h3>
+      <p>Choose an amount and frequency. Secure payment processing handles the rest in seconds.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <h3>We Allocate</h3>
+      <p>Funds are directed to highest-need areas via our vetted local partner network on the ground.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <h3>Children Receive</h3>
+      <p>Food, medicine, shelter, and education reach children within days of your donation.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-num">4</div>
+      <h3>You're Updated</h3>
+      <p>Monthly impact reports show you exactly how your generosity made a difference.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials fade-up" id="about">
+  <div class="section-label">From Our Community</div>
+  <h2>Donors who believe in <em>every child's</em> right to peace</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"I've donated to many charities, but Hope for the Children shows me exactly where my money goes. I've sponsored Maryam for 6 months and the updates are so moving."</p>
+      <div class="testimonial-author"><strong>Sarah M.</strong>London, UK</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"As an Iranian-American, this cause is deeply personal to me. Finally, an organization I trust completely to help children back home with transparency and heart."</p>
+      <div class="testimonial-author"><strong>Dariush K.</strong>Los Angeles, USA</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"My company started a monthly matching program through Hope for the Children. Seeing our team come together for kids in war zones has been incredibly powerful."</p>
+      <div class="testimonial-author"><strong>Amira J.</strong>Toronto, Canada</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery fade-up" id="gallery">
+  <div class="section-label">From the Field</div>
+  <h2>A glimpse into <em>their world</em></h2>
+  <p class="gallery-subtitle">Real moments from our teams on the ground. Upload your own photos from volunteer trips or field visits below.</p>
+
+  <div class="gallery-upload-bar">
+    <label class="upload-btn" for="fileInput">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Upload Photos
+    </label>
+    <input type="file" id="fileInput" multiple accept="image/*" onchange="handleUpload(event)">
+    <div class="gallery-filter-tabs" id="filterTabs">
+      <button class="filter-tab active" onclick="filterGallery(this,'all')">All</button>
+      <button class="filter-tab" onclick="filterGallery(this,'food')">Food Aid</button>
+      <button class="filter-tab" onclick="filterGallery(this,'medical')">Medical</button>
+      <button class="filter-tab" onclick="filterGallery(this,'education')">Education</button>
+      <button class="filter-tab" onclick="filterGallery(this,'community')">Community</button>
+    </div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Default placeholder cards using gradient + emoji as art -->
+    <div class="gallery-item" data-category="education" onclick="openLightbox(0)">
+      <div class="g-img" style="background:linear-gradient(135deg,#C8922A,#8B4513);height:260px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.14.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">A new classroom in Tehran</div><div class="g-tag">Education · Iran</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="food" onclick="openLightbox(1)">
+      <div class="g-img" style="background:linear-gradient(135deg,#E8B96A,#C8922A);height:200px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.16.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Food distribution day, Aleppo</div><div class="g-tag">Food Aid · Syria</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="medical" onclick="openLightbox(2)">
+      <div class="g-img" style="background:linear-gradient(135deg,#B5532A,#C8922A);height:320px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.15.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Mobile clinic visit, Sana'a</div><div class="g-tag">Medical · Yemen</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="community" onclick="openLightbox(3)">
+      <div class="g-img" style="background:linear-gradient(135deg,#D4A574,#8B4513);height:230px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets/WhatsApp Image 2026-03-12 at 20.13.10.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Community gathering, Beirut</div><div class="g-tag">Community · Lebanon</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="education" onclick="openLightbox(4)">
+      <div class="g-img" style="background:linear-gradient(135deg,#C8922A,#E8B96A);height:190px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.11.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Children receiving school kits</div><div class="g-tag">Education · Iraq</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="food" onclick="openLightbox(5)">
+      <div class="g-img" style="background:linear-gradient(135deg,#8B4513,#D4A574);height:280px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.17.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Clean water project launch</div><div class="g-tag">Water · Afghanistan</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="community" onclick="openLightbox(6)">
+      <div class="g-img" style="background:linear-gradient(135deg,#E8C4A0,#B5532A);height:210px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets/WhatsApp Image 2026-03-12 at 20.13.12.jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Art therapy session, Gaza</div><div class="g-tag">Mental Health · Gaza</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+    <div class="gallery-item" data-category="medical" onclick="openLightbox(7)">
+      <div class="g-img" style="background:linear-gradient(135deg,#C8922A,#B5532A);height:240px;display:flex;align-items:center;justify-content:center;font-size:5rem;"><img src="assets\WhatsApp Image 2026-03-12 at 20.13.16 (1).jpeg" class="g-imgs"></div>
+      <div class="g-overlay"><div class="g-caption">Vaccination drive, Isfahan</div><div class="g-tag">Medical · Iran</div></div>
+      <div class="g-zoom-icon">⤢</div>
+    </div>
+  </div>
+
+  <div id="galleryEmpty" class="gallery-empty" style="display:none">
+    <div class="gallery-empty-icon">📷</div>
+    <p>No photos in this category yet.<br>Upload your own or switch back to All.</p>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+  <div class="lightbox-info">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="lightbox-tag" id="lightboxTag"></div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter fade-up">
+  <div class="section-label" style="justify-content:center"><span style="display:none"></span>Stay Connected</div>
+  <h2>Get <em>impact stories</em> delivered to your inbox</h2>
+  <p>Join 18,000 supporters receiving monthly updates from the field.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address">
+    <button onclick="subscribeNewsletter(this)">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="nav-logo">Hope <span>for</span> the Children</span>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div>
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="#">Food Aid</a></li>
+        <li><a href="#">Medical Relief</a></li>
+        <li><a href="#">Education</a></li>
+        <li><a href="#">Mental Health</a></li>
+        <li><a href="#">Emergency Response</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Organisation</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Annual Reports</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Fundraise</a></li>
+        <li><a href="#">Corporate Giving</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<!-- DONATION SUCCESS MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">🕊️</div>
+    <h3>Thank You!</h3>
+    <p>Your generous donation is on its way to children who need it most. You'll receive a confirmation email shortly with your tax receipt.</p>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+  // Amount selection
+  let selectedAmount = '$25';
+  let selectedFreq = 'Monthly';
+
+  function setAmount(btn, val) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedAmount = val;
+    const wrap = document.getElementById('customAmountWrap');
+    wrap.style.display = val === 'other' ? 'block' : 'none';
+    updateLabel();
+  }
+
+  function setFreq(btn, val) {
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedFreq = val;
+    updateLabel();
+  }
+
+  function updateLabel() {
+    const label = document.getElementById('donateAmountLabel');
+    const amt = selectedAmount === 'other' ? 'Custom' : selectedAmount;
+    label.textContent = `${amt} / ${selectedFreq === 'Monthly' ? 'Month' : 'One-time'}`;
+  }
+
+  function openModal() {
+    document.getElementById('modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+
+  function subscribeNewsletter(btn) {
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = '#2d6a4f';
+    setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; }, 3000);
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── GALLERY ──
+  let galleryData = [
+    { src: null, caption: 'A new classroom in Tehran', tag: 'Education · Iran', category: 'education' },
+    { src: null, caption: 'Food distribution day, Aleppo', tag: 'Food Aid · Syria', category: 'food' },
+    { src: null, caption: 'Mobile clinic visit, Sana\'a', tag: 'Medical · Yemen', category: 'medical' },
+    { src: null, caption: 'Community gathering, Beirut', tag: 'Community · Lebanon', category: 'community' },
+    { src: null, caption: 'Children receiving school kits', tag: 'Education · Iraq', category: 'education' },
+    { src: null, caption: 'Clean water project launch', tag: 'Water · Afghanistan', category: 'food' },
+    { src: null, caption: 'Art therapy session, Gaza', tag: 'Mental Health · Gaza', category: 'community' },
+    { src: null, caption: 'Vaccination drive, Isfahan', tag: 'Medical · Iran', category: 'medical' },
+  ];
+  let currentLightboxIdx = 0;
+  let visibleItems = [];
+
+  function handleUpload(event) {
+    const files = Array.from(event.target.files);
+    const grid = document.getElementById('galleryGrid');
+    files.forEach((file, i) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const src = e.target.result;
+        const entry = { src, caption: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g,' '), tag: 'Uploaded Photo', category: 'community' };
+        galleryData.push(entry);
+        const idx = galleryData.length - 1;
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.dataset.category = 'community';
+        item.onclick = () => openLightbox(idx);
+        item.style.animation = 'fadeIn 0.5s ease';
+        item.innerHTML = `
+          <img class="g-img" src="${src}" alt="${entry.caption}" style="border-radius:3px;">
+          <div class="g-overlay"><div class="g-caption">${entry.caption}</div><div class="g-tag">${entry.tag}</div></div>
+          <div class="g-zoom-icon">⤢</div>`;
+        grid.appendChild(item);
+      };
+      reader.readAsDataURL(file);
+    });
+    event.target.value = '';
+  }
+
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const items = document.querySelectorAll('.gallery-item');
+    let shown = 0;
+    items.forEach(item => {
+      const match = cat === 'all' || item.dataset.category === cat;
+      item.style.display = match ? 'block' : 'none';
+      if (match) shown++;
+    });
+    document.getElementById('galleryEmpty').style.display = shown === 0 ? 'block' : 'none';
+    // rebuild visible index for lightbox
+    visibleItems = Array.from(items).filter(i => i.style.display !== 'none');
+  }
+
+  function openLightbox(idx) {
+    const data = galleryData[idx];
+    currentLightboxIdx = idx;
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImg');
+    // For emoji placeholders, show a styled placeholder
+    if (data.src) {
+      img.src = data.src;
+      img.style.display = 'block';
+    } else {
+      img.src = '';
+      img.style.display = 'none';
+    }
+    document.getElementById('lightboxCaption').textContent = data.caption;
+    document.getElementById('lightboxTag').textContent = data.tag;
+    document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${galleryData.length}`;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navLightbox(dir) {
+    let next = currentLightboxIdx + dir;
+    if (next < 0) next = galleryData.length - 1;
+    if (next >= galleryData.length) next = 0;
+    openLightbox(next);
+  }
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') navLightbox(1);
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+  });
+
+  // ── DONORBOX INTEGRATION ──
+  function activateDonorbox() {
+    const campaign = document.getElementById('campaignInput').value.trim();
+    if (!campaign) { alert('Please enter your Donorbox campaign name.'); return; }
+
+    // Hide setup notice
+    document.getElementById('setupNotice').style.display = 'none';
+
+    // Build Donorbox embed iframe
+    const embedDiv = document.getElementById('donorboxEmbed');
+    embedDiv.style.display = 'block';
+    embedDiv.innerHTML = `
+      <script src="https://donorbox.org/widget.js" paypalExpress="false"><\/script>
+      <iframe
+        src="https://donorbox.org/embed/${campaign}?default_interval=m&hide_donation_meter=false"
+        name="donorbox"
+        allowpaymentrequest="allowpaymentrequest"
+        seamless="seamless"
+        frameborder="0"
+        scrolling="no"
+        height="900"
+        width="100%"
+        style="max-width:500px;min-width:250px;max-height:none!important;border-radius:4px;"
+        allow="payment">
+      </iframe>`;
+
+    // Also set fallback link
+    document.getElementById('donorboxLink').href = `https://donorbox.org/${campaign}`;
+    document.getElementById('fallbackBtn').style.display = 'block';
+
+    // Save to localStorage so it persists on reload
+    try { localStorage.setItem('dbCampaign', campaign); } catch(e) {}
+  }
+
+  // Auto-restore campaign if previously saved
+  (function() {
+    try {
+      const saved = localStorage.getItem('dbCampaign');
+      if (saved) {
+        document.getElementById('campaignInput').value = saved;
+        activateDonorbox();
+      }
+    } catch(e) {}
+  })();
+
+  // ── STAGGER impact cards
+  document.querySelectorAll('.impact-card').forEach((c, i) => {
+    c.style.transitionDelay = `${i * 0.1}s`;
+  });
+</script>
+</body>
+</html>
