@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories of Hope — Hope for the Children</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-hero {
+    padding: 10rem 4rem 5rem;
+    background: linear-gradient(135deg, #1C1710 0%, #2E2416 100%);
+  }
+  .page-hero .section-label { color: var(--gold-light); }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
+    color: var(--cream); line-height: 1.15; max-width: 700px; margin-bottom: 1.25rem;
+  }
+  .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+  .page-hero p { font-size: 1.05rem; color: rgba(250,245,236,0.6); max-width: 560px; line-height: 1.7; }
+  .featured { background: var(--warm-white); padding: 6rem 4rem; }
+  .featured-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .featured-img { border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; }
+  .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-content h2 { margin-bottom: 1.25rem; }
+  .featured-content p { font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.25rem; }
+  .featured-quote {
+    border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem;
+    margin: 1.75rem 0; background: rgba(200,146,42,0.05); border-radius: 0 4px 4px 0;
+  }
+  .featured-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; color: var(--charcoal); line-height: 1.5; margin-bottom: 0.5rem; }
+  .featured-quote cite { font-size: 0.78rem; color: var(--muted); }
+  .stories-section { background: var(--cream); padding: 6rem 4rem; }
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .story-card {
+    background: var(--warm-white); border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--border); transition: all 0.3s;
+  }
+  .story-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
+  .story-visual { height: 300px; overflow: hidden; }
+  .story-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .story-card:hover .story-visual img { transform: scale(1.04); }
+  .story-body { padding: 1.75rem; }
+  .story-tag {
+    font-size: 0.7rem; font-weight: 500; color: var(--gold);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .story-tag svg { width: 12px; height: 12px; stroke: var(--gold); fill: none; stroke-width: 2; }
+  .story-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.75rem; line-height: 1.3; }
+  .story-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .story-progress { padding: 1.25rem 1.75rem; border-top: 1px solid var(--border); }
+  .progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .progress-label span { font-size: 0.78rem; color: var(--muted); }
+  .progress-label strong { font-size: 0.78rem; color: var(--gold); }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--terra)); border-radius: 2px; }
+  @media (max-width: 1024px) {
+    .page-hero { padding: 8rem 2rem 4rem; }
+    .featured { padding: 4rem 2rem; }
+    .featured-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stories-section { padding: 4rem 2rem; }
+    .stories-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+
+<div class="page-hero">
+  <div class="section-label">Stories of Hope</div>
+  <h1>Children whose lives you have <em>touched</em></h1>
+  <p>Real stories from the field. Every name represents a life changed by the generosity of our supporters.</p>
+</div>
+
+<section class="featured fade-up">
+  <div class="featured-inner">
+    <div class="featured-img">
+      <img src="assets/maryam-iran.jpeg" alt="Maryam, Tehran">
+    </div>
+    <div class="featured-content">
+      <div class="section-label">Featured Story</div>
+      <h2>Maryam's <em>journey</em> back to school</h2>
+      <p>At just 8 years old, Maryam had already experienced more upheaval than most adults. Displaced from her home in southern Iran, she and her family arrived in Tehran with nothing.</p>
+      <p>For two years, she hadn't set foot in a classroom. The trauma of displacement had left her withdrawn and fearful. Then our education team found her family.</p>
+      <div class="featured-quote">
+        <p>"The first day she came home with a drawing she made at school, I cried. I had not seen her smile like that in two years."</p>
+        <cite>— Maryam's mother, Tehran</cite>
+      </div>
+      <p>Today, Maryam is in second grade, learning to read and dreaming of becoming a doctor. Your donations made this possible.</p>
+      <a href="donate.html" class="btn-primary" style="margin-top:0.5rem">Help More Children Like Maryam</a>
+    </div>
+  </div>
+</section>
+
+<section class="stories-section fade-up">
+  <div class="section-label">All Stories</div>
+  <h2>Lives <em>transformed</em> by your giving</h2>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/maryam-iran.jpeg" alt="Maryam"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tehran, Iran</div>
+        <h3>Maryam, Age 8</h3>
+        <p>Displaced after conflict, Maryam hadn't been to school in two years. Thanks to supporters like you, she's now learning to read and dreams of becoming a doctor.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$3,900 raised</span><strong>of $5,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/1000366571.jpg" alt="Omar"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Aleppo, Syria</div>
+        <h3>Omar, Age 11</h3>
+        <p>Omar survived a bombing that destroyed his home. Our medical team provided surgery and rehabilitation. Today he plays football and attends our learning center.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$6,200 raised</span><strong>of $10,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/fatima-yemen.jpeg" alt="Fatima"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sana'a, Yemen</div>
+        <h3>Fatima & her siblings</h3>
+        <p>A mother of four, Fatima struggled to feed her children. Monthly food parcels from our program now ensure her family never goes to bed hungry.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$9,100 raised</span><strong>of $10,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:91%"></div></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/education-iraq.jpeg" alt="Ahmed"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mosul, Iraq</div>
+        <h3>Ahmed, Age 13</h3>
+        <p>Ahmed lost his right hand during conflict. Our prosthetics program and rehabilitation team helped him regain independence. He now mentors younger children at our center.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$7,400 raised</span><strong>of $12,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/community-beirut.jpeg" alt="Layla"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Beirut, Lebanon</div>
+        <h3>Layla, Age 9</h3>
+        <p>After the Beirut explosion, Layla's family had nowhere to go. Our emergency shelter program housed them for six months while they rebuilt. Layla is now thriving in school.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$4,800 raised</span><strong>of $7,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div>
+      </div>
+    </div>
+    <div class="story-card">
+      <div class="story-visual"><img src="assets/art-therapy-gaza.jpeg" alt="Hassan"></div>
+      <div class="story-body">
+        <div class="story-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Gaza</div>
+        <h3>Hassan, Age 7</h3>
+        <p>Hassan hadn't spoken for months after witnessing the destruction of his neighborhood. Art therapy sessions with our team helped him find his voice again.</p>
+      </div>
+      <div class="story-progress">
+        <div class="progress-label"><span>$5,500 raised</span><strong>of $8,000</strong></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:69%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Hope <span>for</span> the Children</a>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
+    <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html">Monthly Giving</a></li><li><a href="donate.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  renderNav('stories.html');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

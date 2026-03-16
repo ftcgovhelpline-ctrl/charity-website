@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Hope for the Children</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-hero { padding: 10rem 4rem 5rem; background: var(--charcoal); }
+  .page-hero .section-label { color: var(--gold-light); }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.15; max-width: 700px; margin-bottom: 1.25rem; }
+  .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+  .page-hero p { font-size: 1.05rem; color: rgba(250,245,236,0.6); max-width: 560px; line-height: 1.7; }
+  .gallery-section { background: var(--charcoal); padding: 3rem 4rem 6rem; }
+  .gallery-upload-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .upload-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.75rem; border-radius: 2px; background: rgba(200,146,42,0.15); border: 1.5px solid var(--gold); color: var(--gold-light); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .upload-btn:hover { background: rgba(200,146,42,0.28); }
+  .upload-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+  #fileInput { display: none; }
+  .gallery-filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-tab { padding: 0.5rem 1.2rem; border-radius: 2px; border: 1px solid rgba(200,146,42,0.25); background: transparent; color: rgba(250,245,236,0.5); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .filter-tab.active, .filter-tab:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .gallery-grid { columns: 4; column-gap: 1rem; }
+  .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 3px; cursor: pointer; display: block; }
+  .gallery-item .g-img { width: 100%; display: block; transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 3px; object-fit: cover; }
+  .gallery-item:hover .g-img { transform: scale(1.04); }
+  .gallery-item .g-overlay { position: absolute; inset: 0; border-radius: 3px; background: linear-gradient(to top, rgba(28,23,16,0.85) 0%, transparent 55%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.25rem; }
+  .gallery-item:hover .g-overlay { opacity: 1; }
+  .g-caption { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #fff; line-height: 1.35; margin-bottom: 0.3rem; }
+  .g-tag { font-size: 0.7rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; }
+  .g-zoom-icon { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; border-radius: 50%; background: rgba(200,146,42,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+  .g-zoom-icon svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2; }
+  .gallery-item:hover .g-zoom-icon { opacity: 1; }
+  .gallery-empty { text-align: center; padding: 4rem 2rem; border: 2px dashed rgba(200,146,42,0.2); border-radius: 6px; color: rgba(250,245,236,0.35); }
+  .gallery-empty svg { width: 48px; height: 48px; stroke: rgba(200,146,42,0.3); fill: none; stroke-width: 1; margin-bottom: 1rem; }
+  .gallery-empty p { font-size: 0.9rem; line-height: 1.6; }
+  .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(16,12,8,0.97); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; flex-direction: column; }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
+  .lightbox-img { max-width: 90vw; max-height: 75vh; border-radius: 4px; object-fit: contain; box-shadow: 0 40px 100px rgba(0,0,0,0.7); transform: scale(0.95); transition: transform 0.3s; }
+  .lightbox.open .lightbox-img { transform: scale(1); }
+  .lightbox-info { margin-top: 1.5rem; text-align: center; }
+  .lightbox-caption { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--cream); font-style: italic; }
+  .lightbox-tag { font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+  .lightbox-close { position: fixed; top: 1.5rem; right: 2rem; background: none; border: none; color: rgba(250,245,236,0.6); cursor: pointer; transition: color 0.2s; z-index: 10; }
+  .lightbox-close svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .lightbox-close:hover { color: var(--gold-light); }
+  .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3); border-radius: 2px; color: var(--gold-light); padding: 1rem 0.75rem; cursor: pointer; transition: all 0.2s; }
+  .lightbox-nav svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; display: block; }
+  .lightbox-nav:hover { background: rgba(200,146,42,0.35); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
+  .lightbox-counter { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.78rem; color: rgba(250,245,236,0.4); letter-spacing: 0.1em; }
+  @media (max-width: 1024px) { .gallery-grid { columns: 3; } .gallery-section { padding: 2rem 2rem 4rem; } .page-hero { padding: 8rem 2rem 4rem; } }
+  @media (max-width: 700px) { .gallery-grid { columns: 2; } }
+  @media (max-width: 480px) { .gallery-grid { columns: 1; } }
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+<div class="page-hero">
+  <div class="section-label">From the Field</div>
+  <h1>A glimpse into <em>their world</em></h1>
+  <p>Real moments captured by our teams on the ground. Every image tells a story of resilience and hope.</p>
+</div>
+<section class="gallery-section">
+  <div class="gallery-upload-bar">
+    <label class="upload-btn" for="fileInput">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Upload Photos
+    </label>
+    <input type="file" id="fileInput" multiple accept="image/*" onchange="handleUpload(event)">
+    <div class="gallery-filter-tabs">
+      <button class="filter-tab active" onclick="filterGallery(this,'all')">All</button>
+      <button class="filter-tab" onclick="filterGallery(this,'food')">Food Aid</button>
+      <button class="filter-tab" onclick="filterGallery(this,'medical')">Medical</button>
+      <button class="filter-tab" onclick="filterGallery(this,'education')">Education</button>
+      <button class="filter-tab" onclick="filterGallery(this,'community')">Community</button>
+    </div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item" data-category="education" onclick="openLightbox(0)">
+      <img class="g-img" src="assets/classroom-tehran.jpeg" alt="Classroom Tehran" style="height:260px">
+      <div class="g-overlay"><div class="g-caption">A new classroom in Tehran</div><div class="g-tag">Education · Iran</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="food" onclick="openLightbox(1)">
+      <img class="g-img" src="assets/food-aleppo.jpeg" alt="Food distribution" style="height:200px">
+      <div class="g-overlay"><div class="g-caption">Food distribution day, Aleppo</div><div class="g-tag">Food Aid · Syria</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="medical" onclick="openLightbox(2)">
+      <img class="g-img" src="assets/clinic-sanaa.jpeg" alt="Mobile clinic" style="height:320px">
+      <div class="g-overlay"><div class="g-caption">Mobile clinic visit, Sana'a</div><div class="g-tag">Medical · Yemen</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="community" onclick="openLightbox(3)">
+      <img class="g-img" src="assets/community-beirut.jpeg" alt="Community gathering" style="height:230px">
+      <div class="g-overlay"><div class="g-caption">Community gathering, Beirut</div><div class="g-tag">Community · Lebanon</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="education" onclick="openLightbox(4)">
+      <img class="g-img" src="assets/education-iraq.jpeg" alt="School kits" style="height:190px">
+      <div class="g-overlay"><div class="g-caption">Children receiving school kits</div><div class="g-tag">Education · Iraq</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="food" onclick="openLightbox(5)">
+      <img class="g-img" src="assets/water-afghanistan.jpeg" alt="Clean water" style="height:280px">
+      <div class="g-overlay"><div class="g-caption">Clean water project launch</div><div class="g-tag">Water · Afghanistan</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="community" onclick="openLightbox(6)">
+      <img class="g-img" src="assets/art-therapy-gaza.jpeg" alt="Art therapy" style="height:210px">
+      <div class="g-overlay"><div class="g-caption">Art therapy session, Gaza</div><div class="g-tag">Mental Health · Gaza</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+    <div class="gallery-item" data-category="medical" onclick="openLightbox(7)">
+      <img class="g-img" src="assets/vaccination-isfahan.jpeg" alt="Vaccination drive" style="height:240px">
+      <div class="g-overlay"><div class="g-caption">Vaccination drive, Isfahan</div><div class="g-tag">Medical · Iran</div></div>
+      <div class="g-zoom-icon"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+    </div>
+  </div

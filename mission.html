@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Mission — Hope for the Children</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-hero {
+    padding: 10rem 4rem 5rem;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+  }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
+    color: var(--charcoal); line-height: 1.15; max-width: 700px; margin-bottom: 1.25rem;
+  }
+  .page-hero h1 em { color: var(--gold); font-style: italic; }
+  .page-hero p { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.7; }
+  .impact { background: var(--cream); padding: 6rem 4rem; }
+  .impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .impact-card {
+    padding: 2.5rem; border: 1px solid var(--border); border-radius: 4px;
+    background: var(--warm-white); transition: all 0.3s;
+    display: flex; gap: 1.75rem; align-items: flex-start;
+    position: relative; overflow: hidden;
+  }
+  .impact-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, var(--gold), var(--terra));
+    transform: scaleY(0); transform-origin: top; transition: transform 0.3s;
+  }
+  .impact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
+  .impact-card:hover::before { transform: scaleY(1); }
+  .impact-icon-wrap {
+    width: 60px; height: 60px; flex-shrink: 0;
+    background: rgba(200,146,42,0.1); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .impact-icon-wrap svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .impact-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--charcoal); }
+  .impact-content p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  .impact-stat { display: inline-block; margin-top: 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--gold); }
+  .impact-stat-label { font-size: 0.75rem; color: var(--muted); display: block; margin-top: -0.2rem; }
+  .countries { background: var(--charcoal); padding: 6rem 4rem; }
+  .countries h2 { color: var(--cream); margin-bottom: 3rem; }
+  .countries h2 em { color: var(--gold-light); }
+  .countries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .country-card {
+    background: rgba(200,146,42,0.07); border: 1px solid rgba(200,146,42,0.2);
+    border-radius: 4px; padding: 1.75rem; transition: background 0.2s;
+  }
+  .country-card:hover { background: rgba(200,146,42,0.14); }
+  .country-flag { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+  .country-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--cream); font-weight: 600; margin-bottom: 0.4rem; }
+  .country-card p { font-size: 0.82rem; color: rgba(250,245,236,0.5); line-height: 1.5; }
+  .country-num { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); font-weight: 600; margin-top: 1rem; display: block; }
+  .values { background: var(--warm-white); padding: 6rem 4rem; }
+  .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+  .value-item { text-align: center; padding: 2rem 1.5rem; }
+  .value-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: rgba(200,146,42,0.2); font-weight: 600; line-height: 1; margin-bottom: 0.5rem; }
+  .value-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal); font-weight: 600; margin-bottom: 0.75rem; }
+  .value-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  @media (max-width: 1024px) {
+    .page-hero { padding: 8rem 2rem 4rem; }
+    .impact { padding: 4rem 2rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .countries { padding: 4rem 2rem; }
+    .countries-grid { grid-template-columns: repeat(2,1fr); }
+    .values { padding: 4rem 2rem; }
+    .values-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) { .countries-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+
+<div class="page-hero">
+  <div class="section-label">Our Mission</div>
+  <h1>Bringing <em>hope</em> to children in the heart of conflict</h1>
+  <p>Since 2018, we have worked tirelessly to deliver life-saving aid and long-term support to children across Iran and the wider Middle East.</p>
+</div>
+
+<section class="impact fade-up">
+  <div class="section-label">What We Do</div>
+  <h2>Where your <em>generosity</em> goes</h2>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="20" cy="18" r="2"/></svg>
+      </div>
+      <div class="impact-content">
+        <h3>Food & Clean Water</h3>
+        <p>Daily nutritious meals and clean drinking water for children suffering from malnutrition and displacement in conflict zones. Our food parcels reach families within 48 hours of a crisis.</p>
+        <span class="impact-stat">4,200+</span>
+        <span class="impact-stat-label">Children fed daily</span>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div class="impact-content">
+        <h3>Medical Care</h3>
+        <p>Emergency healthcare, trauma treatment, vaccinations, and ongoing support for injured and sick children. Our mobile clinics reach areas with no hospital access.</p>
+        <span class="impact-stat">2,800+</span>
+        <span class="impact-stat-label">Medical treatments provided</span>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <div class="impact-content">
+        <h3>Education & Shelter</h3>
+        <p>Safe learning environments, temporary housing, and school supplies so children can rebuild their lives and look toward the future. Education is hope.</p>
+        <span class="impact-stat">3,100+</span>
+        <span class="impact-stat-label">Children in our schools</span>
+      </div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="impact-content">
+        <h3>Mental Health Support</h3>
+        <p>Trauma counseling, play therapy, and psychosocial support to help children heal from the invisible wounds of war. Because healing goes beyond the physical.</p>
+        <span class="impact-stat">1,900+</span>
+        <span class="impact-stat-label">Children in therapy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="countries fade-up">
+  <div class="section-label" style="color:var(--gold-light)">Where We Work</div>
+  <h2>8 countries, <em>one mission</em></h2>
+  <div class="countries-grid">
+    <div class="country-card"><span class="country-flag">🇮🇷</span><h4>Iran</h4><p>Food aid & education programs in Tehran and surrounding regions</p><span class="country-num">3,200+</span></div>
+    <div class="country-card"><span class="country-flag">🇸🇾</span><h4>Syria</h4><p>Emergency medical relief and rebuilding schools in Aleppo</p><span class="country-num">2,800+</span></div>
+    <div class="country-card"><span class="country-flag">🇾🇪</span><h4>Yemen</h4><p>Nutrition programs and clean water access in Sana'a</p><span class="country-num">2,100+</span></div>
+    <div class="country-card"><span class="country-flag">🇵🇸</span><h4>Gaza</h4><p>Emergency relief and mental health support for displaced families</p><span class="country-num">1,600+</span></div>
+    <div class="country-card"><span class="country-flag">🇱🇧</span><h4>Lebanon</h4><p>Community support and refugee child programs in Beirut</p><span class="country-num">980+</span></div>
+    <div class="country-card"><span class="country-flag">🇮🇶</span><h4>Iraq</h4><p>School rebuilding and education kits in post-conflict areas</p><span class="country-num">750+</span></div>
+    <div class="country-card"><span class="country-flag">🇦🇫</span><h4>Afghanistan</h4><p>Clean water projects and food distribution in rural areas</p><span class="country-num">620+</span></div>
+    <div class="country-card"><span class="country-flag">🇯🇴</span><h4>Jordan</h4><p>Refugee child support and vocational training for families</p><span class="country-num">350+</span></div>
+  </div>
+</section>
+
+<section class="values fade-up">
+  <div class="section-label">Our Principles</div>
+  <h2>What we <em>stand for</em></h2>
+  <div class="values-grid">
+    <div class="value-item"><div class="value-num">01</div><h3>Transparency</h3><p>Every dollar is tracked and reported. Our annual audits are publicly available and we share field reports monthly with all supporters.</p></div>
+    <div class="value-item"><div class="value-num">02</div><h3>Local-First</h3><p>We work through vetted local partners who understand the culture and context — not outsiders imposing solutions from afar.</p></div>
+    <div class="value-item"><div class="value-num">03</div><h3>Child-Centred</h3><p>Every decision we make starts with one question: what is best for the child? Their dignity, safety and future come first.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Hope <span>for</span> the Children</a>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
+    <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html">Monthly Giving</a></li><li><a href="donate.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  renderNav('mission.html');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

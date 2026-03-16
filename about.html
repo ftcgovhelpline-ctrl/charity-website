@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Hope for the Children</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .page-hero { padding: 10rem 4rem 5rem; background: var(--warm-white); border-bottom: 1px solid var(--border); }
+  .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--charcoal); line-height: 1.15; max-width: 700px; margin-bottom: 1.25rem; }
+  .page-hero h1 em { color: var(--gold); font-style: italic; }
+  .page-hero p { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.7; }
+  .how { background: var(--cream); padding: 6rem 4rem; }
+  .how-steps { display: flex; flex-direction: column; gap: 0; margin-top: 3.5rem; max-width: 800px; }
+  .how-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .how-step:last-child { border-bottom: none; }
+  .step-num-col { display: flex; flex-direction: column; align-items: center; }
+  .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--cream); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold); flex-shrink: 0; }
+  .step-line { width: 1px; flex: 1; background: linear-gradient(180deg, var(--gold), transparent); margin-top: 0.5rem; min-height: 40px; }
+  .how-step:last-child .step-line { display: none; }
+  .step-content { padding-top: 0.75rem; }
+  .step-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(200,146,42,0.1); border-radius: 3px; margin-bottom: 0.75rem; }
+  .step-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .step-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.75rem; }
+  .step-content p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+  .transparency { background: var(--charcoal); padding: 6rem 4rem; }
+  .transparency h2 { color: var(--cream); margin-bottom: 3rem; }
+  .transparency h2 em { color: var(--gold-light); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+  .stat-box { border: 1px solid rgba(200,146,42,0.2); border-radius: 4px; padding: 2rem; text-align: center; background: rgba(200,146,42,0.04); }
+  .stat-box-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+  .stat-box-label { font-size: 0.82rem; color: rgba(250,245,236,0.55); line-height: 1.5; }
+  .team { background: var(--warm-white); padding: 6rem 4rem; }
+  .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+  .team-card { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+  .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
+  .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--terra)); margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; border: 3px solid var(--border); }
+  .team-avatar svg { width: 36px; height: 36px; stroke: #fff; fill: none; stroke-width: 1.5; }
+  .team-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal); font-weight: 600; margin-bottom: 0.3rem; }
+  .team-card .role { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .team-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .faq { background: var(--cream); padding: 6rem 4rem; }
+  .faq-list { max-width: 700px; margin-top: 3rem; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--charcoal); font-weight: 600; transition: color 0.2s; }
+  .faq-q:hover { color: var(--gold); }
+  .faq-q svg { width: 20px; height: 20px; stroke: var(--muted); fill: none; stroke-width: 2; flex-shrink: 0; transition: transform 0.3s; }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; padding-bottom: 1.5rem; }
+  @media (max-width: 1024px) {
+    .page-hero, .how, .transparency, .team, .faq { padding: 4rem 2rem; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .team-grid { grid-template-columns: 1fr; }
+    .how-step { grid-template-columns: 56px 1fr; gap: 1rem; }
+  }
+  @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+<div class="page-hero">
+  <div class="section-label">How It Works</div>
+  <h1>From your heart to a <em>child's hands</em> — here's how</h1>
+  <p>We believe you deserve to know exactly how your donation travels from your pocket to the children who need it most.</p>
+</div>
+<section class="how fade-up">
+  <div class="section-label">The Process</div>
+  <h2>Your donation's <em>journey</em></h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-num-col"><div class="step-num">1</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>You Give</h3>
+        <p>Choose your amount and frequency. Your payment is processed securely via Flutterwave using bank-grade encryption. One-time or monthly — every contribution matters.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-num-col"><div class="step-num">2</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>We Allocate</h3>
+        <p>Within 24 hours, funds are reviewed by our programmes team and directed to the highest-need areas via our network of 14 vetted local partners across 8 countries.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-num-col"><div class="step-num">3</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Partners Receive</h3>
+        <p>Our local partners — doctors, teachers, community leaders — receive funds and deploy them immediately. They know the terrain, the language, and the families personally.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-num-col"><div class="step-num">4</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <h3>Children Receive</h3>
+        <p>Food, medicine, shelter, education, and emotional support reach children within days of your donation. Every item is documented with photos and receipts.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="step-num-col"><div class="step-num">5</div><div class="step-line"></div></div>
+      <div class="step-content">
+        <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12 19.79 19.79 0 0 1 1.17 3.38 2 2 0 0 1 3.12 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.54a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg></div>
+        <h3>You're Updated</h3>
+        <p>Monthly impact reports land in your inbox. Photos, stories, and financial breakdowns show you exactly how your generosity made a difference. Full transparency, always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="transparency fade-up">
+  <div class="section-label" style="color:var(--gold-light)">By the Numbers</div>
+  <h2>Our commitment to <em>accountability</em></h2>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-box-num">94¢</div><div class="stat-box-label">Of every dollar goes directly to children</div></div>
+    <div class="stat-box"><div class="stat-box-num">4¢</div><div class="stat-box-label">Administration and operations</div></div>
+    <div class="stat-box"><div class="stat-box-num">2¢</div><div class="stat-box-label">Fundraising and awareness</div></div>
+    <div class="stat-box"><div class="stat-box-num">100%</div><div class="stat-box-label">Audited annually by independent firm</div></div>
+  </div>
+</section>
+<section class="team fade-up">
+  <div class="section-label">Our People</div>
+  <h2>The team <em>behind</em> the mission</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3>Dr. Leila Nazari</h3><div class="role">Field Director, Tehran</div>
+      <p>15 years of humanitarian work across Iran and the region. Former WHO consultant. Speaks Farsi, Arabic, and English.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3>James Okafor</h3><div class="role">Executive Director</div>
+      <p>Former UNICEF programme officer with 12 years building NGO infrastructure in conflict regions across Africa and the Middle East.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3>Sara Al-Rashid</h3><div class="role">Head of Programmes</div>
+      <p>Psychologist specialising in childhood trauma. Designed our mental health curriculum now used across 6 countries.</p>
+    </div>
+  </div>
+</section>
+<section class="faq fade-up">
+  <div class="section-label">FAQ</div>
+  <h2>Questions we <em>hear often</em></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my donation tax deductible?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><p>Yes. Hope for the Children is a registered 501(c)(3) nonprofit (EIN: 12-3456789). All donations are fully tax deductible in the US. A receipt will be emailed immediately after your donation.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I know my money reaches children?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><p>We publish monthly impact reports with photos, field notes, and financial breakdowns. Our annual accounts are independently audited and publicly available. 94¢ of every dollar goes directly to programmes.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I cancel my monthly donation?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><p>Absolutely. You can cancel or pause your monthly giving at any time by contacting us at giving@hopeforthechildren.org. There are no fees or penalties.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What currencies do you accept?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><p>We accept USD, GBP, EUR, NGN, CAD and many more via Flutterwave. You can also pay by card, bank transfer, mobile money, and USSD.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can my company make a corporate donation?<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      <div class="faq-a"><p>Yes — we welcome corporate partnerships and gift matching. Contact us at partners@hopeforthechildren.org to discuss how your company can get involved.</p></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Hope <span>for</span> the Children</a>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
+    <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html">Monthly Giving</a></li><li><a href="donate.html">Contact</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+<script src="nav.js"></script>
+<script>
+  renderNav('about.html');
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
