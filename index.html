@@ -46,28 +46,6 @@
       radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 50%),
       radial-gradient(circle at 80% 70%, rgba(181,83,42,0.3) 0%, transparent 50%);
   }
-  .hero-geometric { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-  .geo-circle {
-    width: 420px; height: 420px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; animation: slowSpin 40s linear infinite;
-  }
-  .geo-circle::before { content: ''; position: absolute; inset: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
-  .geo-circle::after { content: ''; position: absolute; inset: 80px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
-  @keyframes slowSpin { to { transform: rotate(360deg); } }
-  .geo-inner {
-    width: 200px; height: 200px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.1); border-radius: 50%; backdrop-filter: blur(4px);
-    animation: slowSpin 40s linear reverse infinite; overflow: hidden;
-  }
-  .geo-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .geo-text {
-    font-family: 'Cormorant Garamond', serif; font-size: 0.85rem;
-    color: rgba(255,255,255,0.9); letter-spacing: 0.1em; text-transform: uppercase;
-    position: absolute; bottom: 30px;
-  }
   .hero-quote {
     position: absolute; bottom: 3rem; left: 2rem; right: 2rem;
     background: rgba(28,23,16,0.6); backdrop-filter: blur(8px);
@@ -75,7 +53,7 @@
     padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; color: rgba(255,255,255,0.9);
   }
   .hero-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.5; }
-  .hero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
+  .ero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
 
   /* MISSION STRIP */
   .mission-strip {
