@@ -99,15 +99,8 @@
     </div>
   </div>
   <div class="donate-form fade-up">
-    <div class="setup-notice" id="flwSetupNotice">
-      <h4>⚙️ Activate Flutterwave Payments</h4>
-      <p>Paste your <strong>Flutterwave Public Key</strong> below.<br>Find it at: <strong>dashboard.flutterwave.com → Settings → API Keys</strong></p>
-      <div class="setup-row">
-        <input id="flwKeyInput" type="text" placeholder="FLWPUBK-xxxxxxxxxxxxxxxx-X">
-        <button onclick="saveFlwKey()">Save Key →</button>
-      </div>
-      <p class="setup-note">🔒 Stored only in this browser. Never share your secret key.</p>
-    </div>
+   
+
     <div class="form-title">Choose Your Gift</div>
     <div class="form-subtitle">Accepted worldwide · Multiple currencies</div>
     <label class="field-label">Donate In</label>
@@ -207,14 +200,7 @@
 <script>
   renderNav('donate.html');
   let selectedAmt = 25, selectedCurr = 'USD', selectedSymbol = '$', selectedFreq = 'once';
-  let flwKey = '';
-  try { flwKey = localStorage.getItem('flwKey') || ''; if (flwKey) document.getElementById('flwSetupNotice').style.display = 'none'; } catch(e){}
-  function saveFlwKey() {
-    const k = document.getElementById('flwKeyInput').value.trim();
-    if (!k) { alert('Please enter your Flutterwave Public Key.'); return; }
-    flwKey = k; try { localStorage.setItem('flwKey', k); } catch(e){}
-    document.getElementById('flwSetupNotice').style.display = 'none';
-  }
+  let flwKey = 'FLWPUBK_TEST-ac734dedcb1b9a8aff1683278ac5578f-X';
   function setCurrency(btn, curr, sym) {
     document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active'); selectedCurr = curr; selectedSymbol = sym;
