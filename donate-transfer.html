@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank Transfer — Hope for the Children</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .transfer-page { min-height: 100vh; background: var(--warm-white); padding: 8rem 4rem 5rem; display: flex; align-items: center; justify-content: center; }
+  .transfer-wrap { max-width: 780px; width: 100%; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; letter-spacing: 0.04em; text-transform: uppercase; }
+  .back-link:hover { color: var(--gold); }
+  .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .transfer-header { margin-bottom: 3rem; }
+  .transfer-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; color: var(--charcoal); line-height: 1.15; margin-bottom: 0.75rem; }
+  .transfer-header h1 em { color: var(--gold); font-style: italic; }
+  .transfer-header p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+
+  /* AMOUNT SELECTOR */
+  .amount-section { background: var(--cream); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; margin-bottom: 2rem; }
+  .amount-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal); font-weight: 600; margin-bottom: 1.25rem; }
+  .amount-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 0.6rem; margin-bottom: 1rem; }
+  .amount-btn { padding: 0.75rem 0.5rem; border-radius: 3px; border: 1.5px solid var(--border); background: var(--warm-white); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); cursor: pointer; transition: all 0.2s; text-align: center; }
+  .amount-btn:hover, .amount-btn.active { border-color: var(--gold); background: rgba(200,146,42,0.08); color: var(--gold); }
+  .amount-btn small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
+  .custom-row { display: flex; gap: 0.75rem; align-items: center; }
+  .custom-row label { font-size: 0.75rem; color: var(--muted); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.05em; }
+  .custom-row input { flex: 1; padding: 0.7rem 1rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--charcoal); outline: none; }
+  .custom-row input:focus { border-color: var(--gold); }
+  .selected-amount { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); font-weight: 600; margin-top: 1rem; }
+
+  /* BANK DETAILS */
+  .bank-section { background: var(--cream); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+  .bank-header { background: var(--charcoal); padding: 1.25rem 2rem; display: flex; align-items: center; gap: 1rem; }
+  .bank-header svg { width: 22px; height: 22px; stroke: var(--gold-light); fill: none; stroke-width: 1.5; }
+  .bank-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--cream); font-weight: 600; }
+  .bank-header span { font-size: 0.75rem; color: rgba(250,245,236,0.4); margin-left: auto; letter-spacing: 0.05em; text-transform: uppercase; }
+  .bank-details { padding: 2rem; }
+  .bank-row { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+  .bank-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); font-weight: 600; display: flex; align-items: center; gap: 0.75rem; }
+  .copy-btn { background: none; border: 1px solid var(--border); border-radius: 2px; padding: 0.3rem 0.6rem; font-size: 0.7rem; color: var(--muted); cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 0.3rem; }
+  .copy-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .copy-btn svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .copy-btn.copied { border-color: #2db464; color: #2db464; }
+
+  /* REFERENCE BOX */
+  .ref-box { background: rgba(200,146,42,0.07); border: 1.5px dashed var(--gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+  .ref-box p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.5rem; }
+  .ref-code { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; }
+
+  /* EMAIL CONFIRMATION */
+  .email-section { background: var(--cream); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; margin-bottom: 2rem; }
+  .email-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--charcoal); font-weight: 600; margin-bottom: 0.5rem; }
+  .email-section p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+  .email-row { display: flex; gap: 0.75rem; }
+  .email-row input { flex: 1; padding: 0.8rem 1rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--charcoal); outline: none; }
+  .email-row input:focus { border-color: var(--gold); }
+  .email-row button { padding: 0.8rem 1.5rem; background: var(--gold); color: #fff; border: none; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .email-row button:hover { background: var(--terra); }
+
+  /* STEPS */
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .step { text-align: center; padding: 1.5rem; background: var(--cream); border: 1px solid var(--border); border-radius: 4px; }
+  .step-num { width: 40px; height: 40px; border-radius: 50%; background: rgba(200,146,42,0.1); border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--gold); }
+  .step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); font-weight: 600; margin-bottom: 0.4rem; }
+  .step p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+  @media (max-width: 1024px) { .transfer-page { padding: 7rem 2rem 4rem; } .amount-grid { grid-template-columns: repeat(3,1fr); } .steps { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .amount-grid { grid-template-columns: repeat(2,1fr); } .email-row { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div id="navContainer"></div>
+
+<div class="transfer-page">
+  <div class="transfer-wrap">
+    <a href="donate.html" class="back-link"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back to payment options</a>
+
+    <div class="transfer-header">
+      <div class="section-label">Bank Transfer</div>
+      <h1>Send your donation <em>directly</em></h1>
+      <p>Transfer your donation directly to our verified bank account. No middleman, no fees. Your full amount reaches the children.</p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="steps" style="margin-bottom:2rem;">
+      <div class="step"><div class="step-num">1</div><h4>Choose Amount</h4><p>Select how much you'd like to donate from the options below.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Copy Details</h4><p>Copy our IBAN and use your reference code when making the transfer.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Send & Notify</h4><p>Complete the transfer and enter your email so we can send your receipt.</p></div>
+    </div>
+
+    <!-- AMOUNT SELECTOR -->
+    <div class="amount-section">
+      <h3>Select donation amount</h3>
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="setAmt(this,1)">$1<small>Small gift</small></button>
+        <button class="amount-btn" onclick="setAmt(this,5)">$5<small>Buys a meal</small></button>
+        <button class="amount-btn" onclick="setAmt(this,10)">$10<small>School supplies</small></button>
+        <button class="amount-btn active" onclick="setAmt(this,25)">$25<small>Feeds 3 kids</small></button>
+        <button class="amount-btn" onclick="setAmt(this,50)">$50<small>Medical supplies</small></button>
+        <button class="amount-btn" onclick="setAmt(this,100)">$100<small>School kit</small></button>
+        <button class="amount-btn" onclick="setAmt(this,250)">$250<small>Emergency shelter</small></button>
+        <button class="amount-btn" onclick="setAmt(this,500)">$500<small>Month of care</small></button>
+        <button class="amount-btn" onclick="setAmt(this,1000)">$1,000<small>Major impact</small></button>
+        <button class="amount-btn" onclick="setAmt(this,'custom')">Other<small>Custom</small></button>
+      </div>
+      <div class="custom-row" id="customRow" style="display:none">
+        <label>Amount (USD)</label>
+        <input type="number" id="customAmt" placeholder="Enter amount" min="1" oninput="updateRef()">
+      </div>
+      <div class="selected-amount" id="selectedAmountDisplay">Selected: $25.00 USD</div>
+    </div>
+
+    <!-- REFERENCE -->
+    <div class="ref-box">
+      <p>Use this unique reference code when making your transfer so we can match it to your donation:</p>
+      <div class="ref-code" id="refCode">HFTC-250-2026</div>
+    </div>
+
+    <!-- BANK DETAILS -->
+    <div class="bank-section">
+      <div class="bank-header">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>International Bank Transfer (IBAN)</h3>
+        <span>Verified Account</span>
+      </div>
+      <div class="bank-details">
+        <div class="bank-row">
+          <span class="bank-label">Account Name</span>
+          <span class="bank-value">Hope for the Children Foundation <button class="copy-btn" onclick="copyText('Hope for the Children Foundation', this)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">IBAN</span>
+          <span class="bank-value">GB29 NWBK 6016 1331 9268 19 <button class="copy-btn" onclick="copyText('GB29NWBK60161331926819', this)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">BIC / SWIFT</span>
+          <span class="bank-value">NWBKGB2L <button class="copy-btn" onclick="copyText('NWBKGB2L', this)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Bank Name</span>
+          <span class="bank-value">NatWest Bank PLC</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Bank Address</span>
+          <span class="bank-value" style="font-size:0.95rem;">250 Bishopsgate, London, EC2M 4AA, United Kingdom</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-label">Reference</span>
+          <span class="bank-value" style="color:var(--gold)" id="refInDetails">HFTC-250-2026 <button class="copy-btn" onclick="copyRef(this)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL NOTIFICATION -->
+    <div class="email-section">
+      <h3>Let us know you've transferred</h3>
+      <p>Enter your email below and we'll send you a confirmation and tax receipt once your transfer is received (usually 1–3 business days).</p>
+      <div class="email-row">
+        <input type="email" id="notifyEmail" placeholder="your@email.com">
+        <button onclick="sendNotification()">Notify Us →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Hope <span>for</span> the Children</a>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
+    <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate-card.html">Pay by Card</a></li><li><a href="donate-transfer.html">Bank Transfer</a></li><li><a href="donate-crypto.html">Crypto</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+  renderNav('donate.html');
+  let selectedAmt = 25;
+
+  function setAmt(btn, val) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const customRow = document.getElementById('customRow');
+    if (val === 'custom') {
+      customRow.style.display = 'flex'; selectedAmt = null;
+    } else {
+      customRow.style.display = 'none'; selectedAmt = val; updateRef();
+    }
+  }
+
+  function updateRef() {
+    const custom = document.getElementById('customAmt').value;
+    if (custom) selectedAmt = parseFloat(custom);
+    if (!selectedAmt) return;
+    const ref = 'HFTC-' + (selectedAmt * 100) + '-2026';
+    document.getElementById('refCode').textContent = ref;
+    document.getElementById('refInDetails').innerHTML = `${ref} <button class="copy-btn" onclick="copyRef(this)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>`;
+    document.getElementById('selectedAmountDisplay').textContent = `Selected: $${selectedAmt}.00 USD`;
+  }
+
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied'; btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function copyRef(btn) {
+    const ref = document.getElementById('refCode').textContent;
+    copyText(ref, btn);
+  }
+
+  function sendNotification() {
+    const email = document.getElementById('notifyEmail').value.trim();
+    if (!email) { alert('Please enter your email address.'); return; }
+    if (!selectedAmt) { alert('Please select a donation amount first.'); return; }
+    const btn = document.querySelector('.email-row button');
+    btn.textContent = '✓ We\'ll be in touch!';
+    btn.style.background = '#2db464';
+    setTimeout(() => { btn.textContent = 'Notify Us →'; btn.style.background = ''; }, 4000);
+  }
+</script>
+</body>
+</html>

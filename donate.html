@@ -6,234 +6,155 @@
 <title>Donate — Hope for the Children</title>
 <link rel="stylesheet" href="shared.css">
 <style>
-  .donate-hero { padding: 10rem 4rem 5rem; background: var(--charcoal); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .donate-hero-left .section-label { color: var(--gold-light); }
-  .donate-hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 1.25rem; }
-  .donate-hero-left h1 em { color: var(--gold-light); font-style: italic; }
-  .donate-hero-left p { font-size: 1rem; color: rgba(250,245,236,0.6); line-height: 1.7; margin-bottom: 2rem; }
-  .trust-badges { display: flex; flex-direction: column; gap: 1rem; }
-  .trust-badge { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-radius: 4px; background: rgba(200,146,42,0.08); border: 1px solid rgba(200,146,42,0.2); }
-  .trust-badge-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(200,146,42,0.12); border-radius: 3px; }
-  .trust-badge-icon svg { width: 20px; height: 20px; stroke: var(--gold-light); fill: none; stroke-width: 1.5; }
-  .trust-badge-text { font-size: 0.85rem; color: rgba(250,245,236,0.75); line-height: 1.4; }
-  .trust-badge-text strong { color: var(--gold-light); font-weight: 500; }
-  .donate-form { background: var(--cream); border-radius: 6px; padding: 2.5rem; box-shadow: 0 32px 80px rgba(0,0,0,0.4); }
-  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.4rem; }
-  .form-subtitle { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
-  .field-label { font-size: 0.75rem; font-weight: 500; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
-  .currency-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-  .curr-btn { padding: 0.45rem 0.9rem; border-radius: 2px; border: 1.5px solid var(--border); background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-  .curr-btn.active, .curr-btn:hover { border-color: var(--gold); background: rgba(200,146,42,0.1); color: var(--gold); }
-  .frequency-toggle { display: flex; border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
-  .freq-btn { flex: 1; padding: 0.7rem; border: none; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-  .freq-btn.active { background: var(--gold); color: #fff; }
-  .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-bottom: 1.25rem; }
-  .amount-btn { padding: 0.85rem; border-radius: 3px; border: 1.5px solid var(--border); background: var(--warm-white); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--charcoal); cursor: pointer; transition: all 0.2s; text-align: center; }
-  .amount-btn:hover, .amount-btn.active { border-color: var(--gold); background: rgba(200,146,42,0.08); color: var(--gold); }
-  .amount-btn small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
-  .custom-wrap { margin-bottom: 1.25rem; }
-  .input-sym { position: relative; }
-  .input-sym span { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gold); font-weight: 600; }
-  .input-sym input { width: 100%; padding: 0.85rem 1rem 0.85rem 2rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-size: 1rem; color: var(--charcoal); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
-  .input-sym input:focus { border-color: var(--gold); }
-  .donor-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-  .donor-fields input, .email-field { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--charcoal); outline: none; transition: border-color 0.2s; }
-  .email-wrap { margin-bottom: 1.25rem; }
-  .email-field:focus, .donor-fields input:focus { border-color: var(--gold); }
-  .donate-btn { width: 100%; padding: 1.1rem; background: var(--gold); border: none; border-radius: 3px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
-  .donate-btn:hover { background: var(--terra); box-shadow: 0 8px 24px rgba(200,146,42,0.3); }
+  .donate-hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 8rem 4rem 5rem;
+    background: var(--charcoal);
+    text-align: center;
+  }
+  .donate-hero .section-label { color: var(--gold-light); justify-content: center; }
+  .donate-hero .section-label::before { display: none; }
+  .donate-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
+    color: var(--cream); line-height: 1.15; max-width: 700px;
+    margin: 0 auto 1rem;
+  }
+  .donate-hero h1 em { color: var(--gold-light); font-style: italic; }
+  .donate-hero .subtitle {
+    font-size: 1.05rem; color: rgba(250,245,236,0.55);
+    max-width: 500px; margin: 0 auto 3.5rem; line-height: 1.7;
+  }
 
-  /* CRYPTO BUTTON */
-  .crypto-divider { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
-  .crypto-divider::before, .crypto-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .crypto-divider span { font-size: 0.75rem; color: var(--muted); white-space: nowrap; letter-spacing: 0.05em; text-transform: uppercase; }
-  .crypto-btn { width: 100%; padding: 1.1rem; background: #1a1a2e; border: 1.5px solid #3d3d6b; border-radius: 3px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
-  .crypto-btn:hover { background: #16213e; border-color: #7c73e6; box-shadow: 0 8px 24px rgba(124,115,230,0.2); }
-  .crypto-btn svg { width: 20px; height: 20px; }
-  .crypto-coins { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
-  .coin-badge { display: flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; border: 1px solid var(--border); background: var(--warm-white); color: var(--muted); }
-  .coin-badge svg { width: 12px; height: 12px; }
+  /* 3 CHOICE CARDS */
+  .payment-choices {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; max-width: 900px; width: 100%; margin: 0 auto;
+  }
+  .choice-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,146,42,0.2);
+    border-radius: 8px; padding: 2.5rem 2rem;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.3s; display: flex;
+    flex-direction: column; align-items: center;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .choice-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,146,42,0.06), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .choice-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 20px 60px rgba(200,146,42,0.15); }
+  .choice-card:hover::before { opacity: 1; }
 
-  .secure-note { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
-  .secure-note svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; }
-  .payment-icons { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
-  .pay-icon { background: var(--warm-white); border: 1px solid var(--border); border-radius: 3px; padding: 0.3rem 0.6rem; font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+  .choice-card.crypto-card { border-color: rgba(124,115,230,0.3); }
+  .choice-card.crypto-card::before { background: linear-gradient(135deg, rgba(124,115,230,0.08), transparent); }
+  .choice-card.crypto-card:hover { border-color: #7c73e6; box-shadow: 0 20px 60px rgba(124,115,230,0.15); }
 
-  /* CRYPTO MODAL */
-  .crypto-modal-overlay { position: fixed; inset: 0; background: rgba(10,10,20,0.85); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .crypto-modal-overlay.open { opacity: 1; pointer-events: all; }
-  .crypto-modal { background: #0f0f1a; border: 1px solid #2a2a4a; border-radius: 8px; padding: 2.5rem; max-width: 460px; width: 90%; transform: translateY(20px); transition: transform 0.3s; }
-  .crypto-modal-overlay.open .crypto-modal { transform: translateY(0); }
-  .crypto-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-  .crypto-modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #fff; font-weight: 600; }
-  .crypto-modal-close { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 1.5rem; line-height: 1; transition: color 0.2s; }
-  .crypto-modal-close:hover { color: #fff; }
-  .crypto-amount-display { background: rgba(124,115,230,0.1); border: 1px solid rgba(124,115,230,0.3); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: center; }
-  .crypto-amount-display .amount { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: #fff; font-weight: 600; }
-  .crypto-amount-display .label { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
-  .crypto-select-label { font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-  .crypto-options { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-  .crypto-option { padding: 0.9rem; border: 1.5px solid #2a2a4a; border-radius: 4px; background: #1a1a2e; cursor: pointer; transition: all 0.2s; text-align: center; }
-  .crypto-option:hover, .crypto-option.selected { border-color: #7c73e6; background: rgba(124,115,230,0.1); }
-  .crypto-option .coin-name { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
-  .crypto-option .coin-full { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
-  .crypto-option .coin-icon { font-size: 1.5rem; margin-bottom: 0.4rem; display: block; }
-  .crypto-email-wrap { margin-bottom: 1.25rem; }
-  .crypto-email-wrap label { font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
-  .crypto-email-wrap input { width: 100%; padding: 0.85rem 1rem; border: 1.5px solid #2a2a4a; border-radius: 3px; background: #1a1a2e; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: #fff; outline: none; transition: border-color 0.2s; }
-  .crypto-email-wrap input:focus { border-color: #7c73e6; }
-  .crypto-pay-btn { width: 100%; padding: 1.1rem; background: linear-gradient(135deg, #7c73e6, #5c55c4); border: none; border-radius: 3px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-  .crypto-pay-btn:hover { opacity: 0.9; box-shadow: 0 8px 24px rgba(124,115,230,0.4); }
-  .crypto-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-align: center; margin-top: 1rem; line-height: 1.5; }
+  .choice-card.transfer-card { border-color: rgba(45,180,100,0.3); }
+  .choice-card.transfer-card::before { background: linear-gradient(135deg, rgba(45,180,100,0.08), transparent); }
+  .choice-card.transfer-card:hover { border-color: #2db464; box-shadow: 0 20px 60px rgba(45,180,100,0.15); }
 
-  /* SUCCESS MODAL */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(28,23,16,0.75); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal { background: var(--cream); border-radius: 6px; padding: 2.5rem; max-width: 420px; width: 90%; text-align: center; transform: translateY(20px); transition: transform 0.3s; }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-icon { margin-bottom: 1rem; }
-  .modal-icon svg { width: 56px; height: 56px; stroke: var(--gold); fill: none; stroke-width: 1; }
-  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--charcoal); margin-bottom: 0.75rem; }
-  .modal p { color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
-  .modal-close { background: var(--gold); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: background 0.2s; }
-  .modal-close:hover { background: var(--terra); }
+  .choice-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .choice-icon.card-icon { background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.3); }
+  .choice-icon.transfer-icon { background: rgba(45,180,100,0.12); border: 1px solid rgba(45,180,100,0.3); }
+  .choice-icon.crypto-icon { background: rgba(124,115,230,0.12); border: 1px solid rgba(124,115,230,0.3); }
+  .choice-icon svg { width: 32px; height: 32px; fill: none; stroke-width: 1.5; }
+  .card-icon svg { stroke: var(--gold-light); }
+  .transfer-icon svg { stroke: #2db464; }
+  .crypto-icon svg { stroke: #7c73e6; }
 
-  .other-ways { background: var(--warm-white); padding: 6rem 4rem; }
-  .ways-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
-  .way-card { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; transition: transform 0.3s, box-shadow 0.3s; }
-  .way-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(200,146,42,0.1); }
-  .way-icon { width: 52px; height: 52px; background: rgba(200,146,42,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; border: 1px solid var(--border); }
-  .way-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .way-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal); font-weight: 600; margin-bottom: 0.5rem; }
-  .way-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+  .choice-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+  .choice-card p { font-size: 0.88rem; color: rgba(250,245,236,0.5); line-height: 1.65; margin-bottom: 1.75rem; flex: 1; }
 
-  @media (max-width: 1024px) { .donate-hero { grid-template-columns: 1fr; gap: 3rem; padding: 8rem 2rem 4rem; } .other-ways { padding: 4rem 2rem; } .ways-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 600px) { .amount-grid { grid-template-columns: repeat(3,1fr); } .donor-fields { grid-template-columns: 1fr; } .crypto-options { grid-template-columns: repeat(2,1fr); } }
+  .choice-btn {
+    display: inline-block; padding: 0.8rem 2rem;
+    border-radius: 3px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; transition: all 0.2s; border: none; cursor: pointer;
+    text-decoration: none;
+  }
+  .choice-btn.gold { background: var(--gold); color: #fff; }
+  .choice-btn.gold:hover { background: var(--terra); }
+  .choice-btn.green { background: #2db464; color: #fff; }
+  .choice-btn.green:hover { background: #229950; }
+  .choice-btn.purple { background: #7c73e6; color: #fff; }
+  .choice-btn.purple:hover { background: #5c55c4; }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    display: flex; gap: 2.5rem; justify-content: center;
+    margin-top: 3.5rem; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: rgba(250,245,236,0.35);
+  }
+  .trust-item svg { width: 15px; height: 15px; stroke: rgba(200,146,42,0.6); fill: none; stroke-width: 2; }
+
+  @media (max-width: 1024px) {
+    .payment-choices { grid-template-columns: 1fr; max-width: 440px; }
+    .donate-hero { padding: 7rem 2rem 4rem; }
+  }
 </style>
 </head>
 <body>
 <div id="navContainer"></div>
 
 <section class="donate-hero">
-  <div class="donate-hero-left fade-up">
-    <div class="section-label">Make a Difference</div>
-    <h1>Your gift <em>changes</em> everything</h1>
-    <p>Every dollar you give goes directly to children in need. We work with trusted on-the-ground partners across Iran, Syria, Yemen, Gaza, Lebanon, Iraq, and Afghanistan.</p>
-    <div class="trust-badges">
-      <div class="trust-badge">
-        <div class="trust-badge-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="trust-badge-text"><strong>Secure & Encrypted</strong> — Bank-grade security on all transactions</div>
+  <div class="section-label">Make a Difference</div>
+  <h1>How would you like to <em>give?</em></h1>
+  <p class="subtitle">Choose your preferred payment method. Every donation goes directly to children in conflict zones across the Middle East.</p>
+
+  <div class="payment-choices">
+
+    <!-- CARD -->
+    <a href="donate-card.html" class="choice-card">
+      <div class="choice-icon card-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
       </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="trust-badge-text"><strong>Fully Transparent</strong> — Audited annually. Reports available anytime.</div>
+      <h3>Pay by Card</h3>
+      <p>Donate securely using your debit or credit card, bank transfer, or mobile money. Powered by Flutterwave.</p>
+      <span class="choice-btn gold">Pay by Card →</span>
+    </a>
+
+    <!-- TRANSFER -->
+    <a href="donate-transfer.html" class="choice-card transfer-card">
+      <div class="choice-icon transfer-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <div class="trust-badge-text"><strong>Tax Deductible</strong> — Registered 501(c)(3) nonprofit organisation</div>
+      <h3>Bank Transfer</h3>
+      <p>Send your donation directly to our bank account via international IBAN transfer. No fees, full transparency.</p>
+      <span class="choice-btn green">Transfer Funds →</span>
+    </a>
+
+    <!-- CRYPTO -->
+    <a href="donate-crypto.html" class="choice-card crypto-card">
+      <div class="choice-icon crypto-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-    </div>
+      <h3>Cryptocurrency</h3>
+      <p>Donate using Bitcoin, Ethereum, USDT, USDC and more. Fast, borderless, and fully anonymous if preferred.</p>
+      <span class="choice-btn purple">Pay with Crypto →</span>
+    </a>
+
   </div>
 
-  <div class="donate-form fade-up">
-    <div class="form-title">Choose Your Gift</div>
-    <div class="form-subtitle">Accepted worldwide · Card, Bank Transfer, Crypto & more</div>
-
-    <label class="field-label">Donate In</label>
-    <div class="currency-row">
-      <button class="curr-btn active" onclick="setCurrency(this,'USD','$')">🇺🇸 USD</button>
-      <button class="curr-btn" onclick="setCurrency(this,'GBP','£')">🇬🇧 GBP</button>
-      <button class="curr-btn" onclick="setCurrency(this,'EUR','€')">🇪🇺 EUR</button>
-      <button class="curr-btn" onclick="setCurrency(this,'EGP','E£')">🇪🇬 EGP</button>
-      <button class="curr-btn" onclick="setCurrency(this,'CAD','C$')">🇨🇦 CAD</button>
-    </div>
-
-    <div class="frequency-toggle">
-      <button class="freq-btn active" onclick="setFreq(this,'once')">One-time</button>
-      <button class="freq-btn" onclick="setFreq(this,'monthly')">Monthly</button>
-    </div>
-
-    <div class="amount-grid">
-      <button class="amount-btn" onclick="setAmt(this,'custom')"><span class="sym">$</span>Choose<small>Your amount</small></button>
-      <button class="amount-btn" onclick="setAmt(this,1)"><span class="sym">$</span>1<small>Small gift</small></button>
-      <button class="amount-btn" onclick="setAmt(this,5)"><span class="sym">$</span>5<small>Buys a meal</small></button>
-      <button class="amount-btn" onclick="setAmt(this,10)"><span class="sym">$</span>10<small>School supplies</small></button>
-      <button class="amount-btn active" onclick="setAmt(this,25)"><span class="sym">$</span>25<small>Feeds 3 kids/week</small></button>
-      <button class="amount-btn" onclick="setAmt(this,50)"><span class="sym">$</span>50<small>Medical supplies</small></button>
-      <button class="amount-btn" onclick="setAmt(this,100)"><span class="sym">$</span>100<small>School kit + books</small></button>
-      <button class="amount-btn" onclick="setAmt(this,250)"><span class="sym">$</span>250<small>Emergency shelter</small></button>
-      <button class="amount-btn" onclick="setAmt(this,500)"><span class="sym">$</span>500<small>Full month of care</small></button>
-    </div>
-
-    <div class="custom-wrap" id="customWrap" style="display:none">
-      <label class="field-label">Enter Your Amount</label>
-      <div class="input-sym">
-        <span id="customSymbol">$</span>
-        <input type="number" id="customAmt" placeholder="Enter amount" min="1" oninput="updatePayBtn()">
-      </div>
-    </div>
-
-    <div class="donor-fields">
-      <div><label class="field-label">First Name</label><input id="donorFirst" type="text" placeholder="Amira"></div>
-      <div><label class="field-label">Last Name</label><input id="donorLast" type="text" placeholder="Hassan"></div>
-    </div>
-    <div class="email-wrap">
-      <label class="field-label">Email Address</label>
-      <input id="donorEmail" type="email" placeholder="your@email.com" class="email-field">
-    </div>
-
-    <!-- FLUTTERWAVE BUTTON -->
-    <button class="donate-btn" id="payBtn" onclick="launchFlutterwave()">
-      Donate <span id="payBtnLabel">$25</span> by Card / Bank →
-    </button>
-
-    <div class="secure-note">
-      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Powered by Flutterwave · VISA · Mastercard · Bank Transfer · Mobile Money
-    </div>
-
-    <!-- DIVIDER -->
-    <div class="crypto-divider"><span>or donate with crypto</span></div>
-
-    <!-- CRYPTO BUTTON -->
-    <button class="crypto-btn" onclick="openCryptoModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-        <path d="M2 17l10 5 10-5"/>
-        <path d="M2 12l10 5 10-5"/>
-      </svg>
-      Donate with Cryptocurrency
-    </button>
-
-    <div class="crypto-coins">
-      <span class="coin-badge">₿ BTC</span>
-      <span class="coin-badge">Ξ ETH</span>
-      <span class="coin-badge">₮ USDT</span>
-      <span class="coin-badge">◎ USDC</span>
-    </div>
-  </div>
-</section>
-
-<!-- OTHER WAYS -->
-<section class="other-ways fade-up">
-  <div class="section-label">More Ways to Give</div>
-  <h2>Every act of <em>generosity</em> matters</h2>
-  <div class="ways-grid">
-    <div class="way-card">
-      <div class="way-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <h3>Corporate Giving</h3>
-      <p>Partner with us to match employee donations or sponsor a programme. Full co-branding and impact reporting included.</p>
-    </div>
-    <div class="way-card">
-      <div class="way-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-      <h3>Fundraise for Us</h3>
-      <p>Run a marathon, host a bake sale, celebrate a birthday — any event can become a fundraiser. We'll send you everything you need.</p>
-    </div>
-    <div class="way-card">
-      <div class="way-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <h3>Legacy Giving</h3>
-      <p>Leave a lasting gift in your will. A legacy donation ensures children in conflict zones receive hope for generations to come.</p>
-    </div>
+  <div class="trust-strip">
+    <div class="trust-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Bank-grade encryption</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>94¢ of every dollar to children</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Registered 501(c)(3) nonprofit</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Independently audited</div>
   </div>
 </section>
 
@@ -245,7 +166,7 @@
     </div>
     <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
     <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
-    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html">Monthly Giving</a></li><li><a href="donate.html">Contact</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate-card.html">Pay by Card</a></li><li><a href="donate-transfer.html">Bank Transfer</a></li><li><a href="donate-crypto.html">Crypto</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
@@ -253,221 +174,9 @@
   </div>
 </footer>
 
-<!-- CRYPTO MODAL -->
-<div class="crypto-modal-overlay" id="cryptoModal">
-  <div class="crypto-modal">
-    <div class="crypto-modal-header">
-      <h3>Donate with Crypto</h3>
-      <button class="crypto-modal-close" onclick="closeCryptoModal()">✕</button>
-    </div>
-    <div class="crypto-amount-display">
-      <div class="amount" id="cryptoAmountDisplay">$25.00</div>
-      <div class="label">Donation amount · will be converted to your chosen crypto</div>
-    </div>
-    <span class="crypto-select-label">Select cryptocurrency</span>
-    <div class="crypto-options">
-      <div class="crypto-option selected" onclick="selectCoin(this,'BTC')">
-        <span class="coin-icon">₿</span>
-        <div class="coin-name">BTC</div>
-        <div class="coin-full">Bitcoin</div>
-      </div>
-      <div class="crypto-option" onclick="selectCoin(this,'ETH')">
-        <span class="coin-icon">Ξ</span>
-        <div class="coin-name">ETH</div>
-        <div class="coin-full">Ethereum</div>
-      </div>
-      <div class="crypto-option" onclick="selectCoin(this,'USDT')">
-        <span class="coin-icon">₮</span>
-        <div class="coin-name">USDT</div>
-        <div class="coin-full">Tether</div>
-      </div>
-      <div class="crypto-option" onclick="selectCoin(this,'USDC')">
-        <span class="coin-icon">◎</span>
-        <div class="coin-name">USDC</div>
-        <div class="coin-full">USD Coin</div>
-      </div>
-    </div>
-    <div class="crypto-email-wrap">
-      <label>Email for receipt</label>
-      <input type="email" id="cryptoEmail" placeholder="your@email.com">
-    </div>
-    <button class="crypto-pay-btn" onclick="launchCryptoPayment()">
-      Continue to Pay with Crypto →
-    </button>
-    <p class="crypto-note">Powered by NowPayments · Secure · Non-custodial<br>You will be redirected to complete your payment</p>
-  </div>
-</div>
-
-<!-- SUCCESS MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-    <h3>Thank You!</h3>
-    <p>Your generous donation is on its way to children who need it most. A confirmation email with your receipt is on its way.</p>
-    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
-  </div>
-</div>
-
 <script src="nav.js"></script>
 <script>
   renderNav('donate.html');
-
-  // ── KEYS ──
-  const flwKey = 'FLWPUBK_TEST-ac734dedcb1b9a8aff1683278ac5578f-X';
-  const nowPaymentsKey = 'JFZNMQ3-9EB4H73-MSM04CM-HHEA98Q';
-
-  // ── STATE ──
-  let selectedAmt = 25;
-  let selectedCurr = 'USD';
-  let selectedSymbol = '$';
-  let selectedFreq = 'once';
-  let selectedCoin = 'BTC';
-
-  // ── CURRENCY ──
-  function setCurrency(btn, curr, sym) {
-    document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedCurr = curr; selectedSymbol = sym;
-    document.getElementById('customSymbol').textContent = sym;
-    document.querySelectorAll('.sym').forEach(s => s.textContent = sym);
-    updatePayBtn();
-  }
-
-  // ── FREQUENCY ──
-  function setFreq(btn, freq) {
-    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedFreq = freq;
-  }
-
-  // ── AMOUNT ──
-  function setAmt(btn, val) {
-    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (val === 'custom') {
-      document.getElementById('customWrap').style.display = 'block';
-      selectedAmt = null;
-      document.getElementById('customAmt').focus();
-    } else {
-      document.getElementById('customWrap').style.display = 'none';
-      selectedAmt = val;
-      updatePayBtn();
-    }
-  }
-
-  function updatePayBtn() {
-    const custom = document.getElementById('customAmt').value;
-    if (custom) selectedAmt = parseFloat(custom);
-    const label = selectedAmt ? `${selectedSymbol}${selectedAmt}` : `${selectedSymbol}--`;
-    document.getElementById('payBtnLabel').textContent = label;
-    document.getElementById('cryptoAmountDisplay').textContent = selectedAmt ? `${selectedSymbol}${selectedAmt}.00` : `${selectedSymbol}0.00`;
-  }
-
-  // ── FLUTTERWAVE ──
-  function launchFlutterwave() {
-    const email = document.getElementById('donorEmail').value.trim();
-    const first = document.getElementById('donorFirst').value.trim();
-    const last = document.getElementById('donorLast').value.trim();
-    if (!email) { alert('Please enter your email address.'); return; }
-    if (!selectedAmt || selectedAmt <= 0) { alert('Please select or enter a donation amount.'); return; }
-    FlutterwaveCheckout({
-      public_key: flwKey,
-      tx_ref: 'HFTC-' + Date.now(),
-      amount: selectedAmt,
-      currency: selectedCurr,
-      payment_options: 'card,mobilemoney,ussd,banktransfer',
-      customer: { email, name: `${first} ${last}`.trim() || 'Anonymous Donor' },
-      customizations: {
-        title: 'Hope for the Children',
-        description: `${selectedFreq === 'monthly' ? 'Monthly' : 'One-time'} donation`
-      },
-      callback: function(data) {
-        if (data.status === 'successful') {
-          document.getElementById('modal').classList.add('open');
-        }
-      },
-      onclose: function() {}
-    });
-  }
-
-  // ── CRYPTO MODAL ──
-  function openCryptoModal() {
-    if (!selectedAmt || selectedAmt <= 0) { alert('Please select or enter a donation amount first.'); return; }
-    document.getElementById('cryptoAmountDisplay').textContent = `${selectedSymbol}${selectedAmt}.00`;
-    const email = document.getElementById('donorEmail').value.trim();
-    if (email) document.getElementById('cryptoEmail').value = email;
-    document.getElementById('cryptoModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeCryptoModal() {
-    document.getElementById('cryptoModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function selectCoin(el, coin) {
-    document.querySelectorAll('.crypto-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedCoin = coin;
-  }
-
-  // ── NOWPAYMENTS ──
-  async function launchCryptoPayment() {
-    const email = document.getElementById('cryptoEmail').value.trim();
-    if (!email) { alert('Please enter your email address.'); return; }
-    if (!selectedAmt || selectedAmt <= 0) { alert('Please select a donation amount first.'); return; }
-
-    const btn = document.querySelector('.crypto-pay-btn');
-    btn.textContent = 'Creating payment...';
-    btn.disabled = true;
-
-    try {
-      const response = await fetch('https://api.nowpayments.io/v1/payment', {
-        method: 'POST',
-        headers: {
-          'x-api-key': nowPaymentsKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          price_amount: selectedAmt,
-          price_currency: selectedCurr.toLowerCase(),
-          pay_currency: selectedCoin.toLowerCase(),
-          order_description: 'Donation to Hope for the Children',
-          customer_email: email
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.payment_id) {
-        // Redirect to NowPayments hosted page
-        window.open(`https://nowpayments.io/payment/?iid=${data.payment_id}`, '_blank');
-        closeCryptoModal();
-        setTimeout(() => {
-          document.getElementById('modal').classList.add('open');
-        }, 1500);
-      } else {
-        alert('Payment setup failed. Please try again or use card payment.');
-      }
-    } catch (err) {
-      alert('Connection error. Please try again.');
-    }
-
-    btn.textContent = 'Continue to Pay with Crypto →';
-    btn.disabled = false;
-  }
-
-  // ── SCROLL ANIMATIONS ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Close crypto modal on escape
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeCryptoModal();
-  });
 </script>
-<script src="https://checkout.flutterwave.com/v3.js"></script>
 </body>
 </html>
