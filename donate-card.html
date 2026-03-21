@@ -24,43 +24,15 @@
   .donate-form { background: var(--cream); border-radius: 8px; padding: 2.5rem; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
   .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.3rem; }
   .form-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.75rem; }
-  .field-label { font-size: 0.72rem; font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 0.45rem; }
-  .currency-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-  .curr-btn { padding: 0.4rem 0.8rem; border-radius: 2px; border: 1.5px solid var(--border); background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-  .curr-btn.active, .curr-btn:hover { border-color: var(--gold); background: rgba(200,146,42,0.1); color: var(--gold); }
-  .frequency-toggle { display: flex; border: 1.5px solid var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 1.25rem; }
-  .freq-btn { flex: 1; padding: 0.65rem; border: none; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-  .freq-btn.active { background: var(--gold); color: #fff; }
-  .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin-bottom: 1.25rem; }
-  .amount-btn { padding: 0.75rem 0.5rem; border-radius: 3px; border: 1.5px solid var(--border); background: var(--warm-white); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); cursor: pointer; transition: all 0.2s; text-align: center; }
-  .amount-btn:hover, .amount-btn.active { border-color: var(--gold); background: rgba(200,146,42,0.08); color: var(--gold); }
-  .amount-btn small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
-  .custom-wrap { margin-bottom: 1.25rem; }
-  .input-sym { position: relative; }
-  .input-sym span { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gold); font-weight: 600; }
-  .input-sym input { width: 100%; padding: 0.85rem 1rem 0.85rem 2rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-size: 1rem; color: var(--charcoal); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
-  .input-sym input:focus { border-color: var(--gold); }
-  .donor-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
-  .donor-fields input, .email-field { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid var(--border); border-radius: 3px; background: var(--warm-white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--charcoal); outline: none; transition: border-color 0.2s; }
-  .email-wrap { margin-bottom: 1.25rem; }
-  .donor-fields input:focus, .email-field:focus { border-color: var(--gold); }
-  .donate-btn { width: 100%; padding: 1.1rem; background: var(--gold); border: none; border-radius: 3px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; margin-top: 0.25rem; }
-  .donate-btn:hover { background: var(--terra); box-shadow: 0 8px 24px rgba(200,146,42,0.3); }
+  .info-box { background: rgba(200,146,42,0.06); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+  .info-box strong { color: var(--charcoal); }
+  .donate-btn { width: 100%; padding: 1.2rem; background: var(--gold); border: none; border-radius: 3px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s; }
+  .donate-btn:hover { background: var(--terra); box-shadow: 0 8px 24px rgba(200,146,42,0.3); transform: translateY(-1px); }
   .secure-note { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.72rem; color: var(--muted); margin-top: 0.9rem; }
   .secure-note svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 2; }
   .payment-icons { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
   .pay-icon { background: var(--warm-white); border: 1px solid var(--border); border-radius: 3px; padding: 0.25rem 0.5rem; font-size: 0.68rem; color: var(--muted); font-weight: 500; }
-  .modal-overlay { position: fixed; inset: 0; background: rgba(28,23,16,0.75); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal { background: var(--cream); border-radius: 6px; padding: 2.5rem; max-width: 420px; width: 90%; text-align: center; transform: translateY(20px); transition: transform 0.3s; }
-  .modal-overlay.open .modal { transform: translateY(0); }
-  .modal-icon svg { width: 56px; height: 56px; stroke: var(--gold); fill: none; stroke-width: 1; margin-bottom: 1rem; }
-  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--charcoal); margin-bottom: 0.75rem; }
-  .modal p { color: var(--muted); line-height: 1.65; margin-bottom: 1.5rem; }
-  .modal-close { background: var(--gold); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: background 0.2s; }
-  .modal-close:hover { background: var(--terra); }
   @media (max-width: 1024px) { .donate-page { padding: 7rem 2rem 4rem; } .donate-wrap { grid-template-columns: 1fr; gap: 3rem; } }
-  @media (max-width: 600px) { .amount-grid { grid-template-columns: repeat(3,1fr); } .donor-fields { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -90,54 +62,13 @@
     </div>
 
     <div class="donate-form">
-      <div class="form-title">Choose Your Gift</div>
-      <div class="form-subtitle">Accepted worldwide · Powered by Paystack</div>
-
-      <label class="field-label">Donate In</label>
-      <div class="currency-row">
-        <button class="curr-btn active" onclick="setCurrency(this,'USD','$')">🇺🇸 USD</button>
-        <button class="curr-btn" onclick="setCurrency(this,'GBP','£')">🇬🇧 GBP</button>
-        <button class="curr-btn" onclick="setCurrency(this,'EUR','€')">🇪🇺 EUR</button>
-        <button class="curr-btn" onclick="setCurrency(this,'EGP','E£')">🇪🇬 EGP</button>
-        <button class="curr-btn" onclick="setCurrency(this,'CAD','C$')">🇨🇦 CAD</button>
+      <div class="form-title">Ready to Give?</div>
+      <div class="form-subtitle">You will be redirected to our secure Paystack payment page</div>
+      <div class="info-box">
+        clicking the button below will take you to our <strong>secure Paystack payment page</strong> where you can enter your preferred donation amount and complete your payment safely.
       </div>
-
-      <div class="frequency-toggle">
-        <button class="freq-btn active" onclick="setFreq(this,'once')">One-time</button>
-        <button class="freq-btn" onclick="setFreq(this,'monthly')">Monthly</button>
-      </div>
-
-      <div class="amount-grid">
-        <button class="amount-btn" onclick="setAmt(this,'custom')"><span class="sym">$</span>Choose<small>Your amount</small></button>
-        <button class="amount-btn" onclick="setAmt(this,1)"><span class="sym">$</span>1<small>Small gift</small></button>
-        <button class="amount-btn" onclick="setAmt(this,5)"><span class="sym">$</span>5<small>Buys a meal</small></button>
-        <button class="amount-btn" onclick="setAmt(this,10)"><span class="sym">$</span>10<small>School supplies</small></button>
-        <button class="amount-btn active" onclick="setAmt(this,25)"><span class="sym">$</span>25<small>Feeds 3 kids/week</small></button>
-        <button class="amount-btn" onclick="setAmt(this,50)"><span class="sym">$</span>50<small>Medical supplies</small></button>
-        <button class="amount-btn" onclick="setAmt(this,100)"><span class="sym">$</span>100<small>School kit + books</small></button>
-        <button class="amount-btn" onclick="setAmt(this,250)"><span class="sym">$</span>250<small>Emergency shelter</small></button>
-        <button class="amount-btn" onclick="setAmt(this,500)"><span class="sym">$</span>500<small>Full month of care</small></button>
-      </div>
-
-      <div class="custom-wrap" id="customWrap" style="display:none">
-        <label class="field-label">Enter Your Amount</label>
-        <div class="input-sym">
-          <span id="customSymbol">$</span>
-          <input type="number" id="customAmt" placeholder="Enter amount" min="1" oninput="updatePayBtn()">
-        </div>
-      </div>
-
-      <div class="donor-fields">
-        <div><label class="field-label">First Name</label><input id="donorFirst" type="text" placeholder="Amira"></div>
-        <div><label class="field-label">Last Name</label><input id="donorLast" type="text" placeholder="Hassan"></div>
-      </div>
-      <div class="email-wrap">
-        <label class="field-label">Email Address</label>
-        <input id="donorEmail" type="email" placeholder="your@email.com" class="email-field">
-      </div>
-
-      <button class="donate-btn" onclick="launchPaystack()">
-        Donate <span id="payBtnLabel">$25</span> Securely →
+      <button class="donate-btn" onclick="window.open('https://paystack.shop/pay/bl39u8g-o3','_blank')">
+        Donate Now via Paystack →
       </button>
       <div class="secure-note">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -154,83 +85,23 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-    <h3>Thank You!</h3>
-    <p>Your generous donation is on its way to children who need it most. A confirmation email with your tax receipt is on its way.</p>
-    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Close</button>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Hope <span>for</span> the Children</a>
+      <p>A registered 501(c)(3) nonprofit bringing humanitarian relief to war-affected children across Iran and the Middle East since 2018.</p>
+    </div>
+    <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
+    <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate-card.html">Pay by Card</a></li><li><a href="donate-transfer.html">Bank Transfer</a></li><li><a href="donate-crypto.html">Crypto</a></li></ul></div>
   </div>
-</div>
+  <div class="footer-bottom">
+    <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+  </div>
+</footer>
 
 <script src="nav.js"></script>
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
-  renderNav('donate.html');
-
-  const paystackKey = 'pk_live_10fd1e2d3685c53c0a29ac5c3e3ee42305e1e208';
-  let selectedAmt = 25, selectedCurr = 'USD', selectedSymbol = '$', selectedFreq = 'once';
-
-  function setCurrency(btn, curr, sym) {
-    document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active'); selectedCurr = curr; selectedSymbol = sym;
-    document.getElementById('customSymbol').textContent = sym;
-    document.querySelectorAll('.sym').forEach(s => s.textContent = sym);
-    updatePayBtn();
-  }
-
-  function setFreq(btn, freq) {
-    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active'); selectedFreq = freq;
-  }
-
-  function setAmt(btn, val) {
-    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (val === 'custom') {
-      document.getElementById('customWrap').style.display = 'block';
-      selectedAmt = null;
-      document.getElementById('customAmt').focus();
-    } else {
-      document.getElementById('customWrap').style.display = 'none';
-      selectedAmt = val; updatePayBtn();
-    }
-  }
-
-  function updatePayBtn() {
-    const custom = document.getElementById('customAmt').value;
-    if (custom) selectedAmt = parseFloat(custom);
-    document.getElementById('payBtnLabel').textContent = selectedAmt ? `${selectedSymbol}${selectedAmt}` : `${selectedSymbol}--`;
-  }
-
-  function launchPaystack() {
-    const email = document.getElementById('donorEmail').value.trim();
-    const first = document.getElementById('donorFirst').value.trim();
-    const last = document.getElementById('donorLast').value.trim();
-    if (!email) { alert('Please enter your email address.'); return; }
-    if (!selectedAmt || selectedAmt <= 0) { alert('Please select or enter a donation amount.'); return; }
-
-    const handler = PaystackPop.setup({
-      key: paystackKey,
-      email: email,
-      amount: selectedAmt * 100,
-      currency: selectedCurr,
-      ref: 'HFTC-' + Date.now(),
-      metadata: {
-        custom_fields: [
-          { display_name: 'Donor Name', variable_name: 'donor_name', value: `${first} ${last}`.trim() || 'Anonymous' },
-          { display_name: 'Frequency', variable_name: 'frequency', value: selectedFreq }
-        ]
-      },
-      callback: function(response) {
-        if (response.status === 'success') {
-          document.getElementById('modal').classList.add('open');
-        }
-      },
-      onClose: function() {}
-    });
-    handler.openIframe();
-  }
-</script>
+<script>renderNav('donate.html');</script>
 </body>
 </html>
