@@ -287,7 +287,7 @@
   <p>Join 18,000 supporters receiving monthly updates from the field.</p>
   <div class="newsletter-form">
     <input type="email" placeholder="Your email address">
-    <button onclick="this.textContent='✓ Subscribed!';this.style.background='#2d6a4f';setTimeout(()=>{this.textContent='Subscribe';this.style.background='';},3000)">Subscribe</button>
+    <button onclick="subscribeNewsletter(this)">Subscribe</button>
   </div>
 </section>
 
@@ -308,6 +308,7 @@
 </footer>
 
 <script src="nav.js"></script>
+<script src="newsletter.js"></script>
 <script>
   renderNav('index.html');
   const observer = new IntersectionObserver((entries) => {
