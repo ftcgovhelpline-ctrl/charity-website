@@ -36,24 +36,42 @@
   }
   .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--gold); }
   .hero-stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
-  .hero-right {
-    position: relative; overflow: hidden;
-    background: linear-gradient(135deg, #8B4513 0%, #C8922A 40%, #E8B96A 70%, #F5DEB3 100%);
-  }
-  .hero-pattern {
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(181,83,42,0.3) 0%, transparent 50%);
-  }
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
   .hero-quote {
     position: absolute; bottom: 3rem; left: 2rem; right: 2rem;
     background: rgba(28,23,16,0.6); backdrop-filter: blur(8px);
     border-left: 3px solid var(--gold-light);
     padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; color: rgba(255,255,255,0.9);
+    z-index: 2;
   }
   .hero-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.5; }
-  .ero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
+  .hero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
+
+  /* CERTIFICATIONS */
+  .certifications {
+    background: var(--warm-white); padding: 2.5rem 4rem;
+    border-bottom: 1px solid var(--border); text-align: center;
+  }
+  .cert-label {
+    font-size: 0.72rem; font-weight: 500; color: var(--muted);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.75rem;
+  }
+  .cert-logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 3rem; transition: transform 0.2s;
+  }
+  .cert-item:hover { transform: translateY(-2px); }
+  .cert-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: rgba(200,146,42,0.08); border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .cert-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .cert-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); white-space: nowrap; }
+  .cert-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; white-space: nowrap; }
+  .cert-divider { width: 1px; height: 40px; background: var(--border); flex-shrink: 0; }
 
   /* MISSION STRIP */
   .mission-strip {
@@ -69,7 +87,6 @@
 
   /* STORIES PREVIEW */
   .stories-preview { background: var(--cream); padding: 6rem 4rem; }
-  .stories-preview h2 { margin-bottom: 0.5rem; }
   .stories-preview .section-intro { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 3rem; line-height: 1.7; }
   .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
   .story-card { background: var(--warm-white); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); transition: all 0.3s; }
@@ -119,6 +136,9 @@
     .hero { grid-template-columns: 1fr; }
     .hero-right { min-height: 50vh; }
     .hero-left { padding: 8rem 2rem 3rem; }
+    .certifications { padding: 2rem; }
+    .cert-item { padding: 1rem 1.5rem; }
+    .cert-divider { display: none; }
     .mission-strip { grid-template-columns: repeat(2,1fr); padding: 3rem 2rem; }
     .strip-item { border-right: none; border-bottom: 1px solid rgba(200,146,42,0.15); padding-bottom: 1.5rem; }
     .stories-preview { padding: 4rem 2rem; }
@@ -131,6 +151,7 @@
     .mission-strip { grid-template-columns: 1fr; }
     .hero-stats { gap: 1.5rem; }
     .newsletter-form { flex-direction: column; }
+    .cert-item { padding: 0.75rem 1rem; width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -154,21 +175,39 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-pattern"></div>
-    <div class="hero-geometric">
-      <div class="geo-circle">
-        <div class="geo-inner">
-          <img src="assets/classroom-tehran.jpeg" alt="Hope for the Children">
-        </div>
-        <div class="geo-text">Peace</div>
-      </div>
-    </div>
+    <img src="assets/classroom-tehran.jpeg" alt="Hope for the Children">
     <div class="hero-quote">
       <p>"No child should ever know the sound of bombs instead of laughter."</p>
       <cite>— Dr. Leila Nazari, Field Director, Tehran</cite>
     </div>
   </div>
 </section>
+
+<!-- CERTIFICATIONS -->
+<div class="certifications">
+  <div class="cert-label">Certified & Accredited By</div>
+  <div class="cert-logos">
+    <div class="cert-item">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
+      <div class="cert-text"><div class="cert-name">UN ECOSOC</div><div class="cert-sub">United Nations Consultative Status</div></div>
+    </div>
+    <div class="cert-divider"></div>
+    <div class="cert-item">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <div class="cert-text"><div class="cert-name">Charity Navigator</div><div class="cert-sub">4-Star Rated Organisation</div></div>
+    </div>
+    <div class="cert-divider"></div>
+    <div class="cert-item">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div class="cert-text"><div class="cert-name">ISO Certified</div><div class="cert-sub">International Standards Organisation</div></div>
+    </div>
+    <div class="cert-divider"></div>
+    <div class="cert-item">
+      <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div class="cert-text"><div class="cert-name">GlobalGiving</div><div class="cert-sub">Vetted & Approved Partner</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- MISSION STRIP -->
 <div class="mission-strip">
@@ -286,7 +325,7 @@
   <h2>Get <em>impact stories</em> delivered to your inbox</h2>
   <p>Join 18,000 supporters receiving monthly updates from the field.</p>
   <div class="newsletter-form">
-    <input type="email" placeholder="Your email address">
+    <input type="email" id="newsletterEmail" placeholder="Your email address">
     <button onclick="subscribeNewsletter(this)">Subscribe</button>
   </div>
 </section>
@@ -299,7 +338,7 @@
     </div>
     <div><h4>Programs</h4><ul><li><a href="mission.html">Food Aid</a></li><li><a href="mission.html">Medical Relief</a></li><li><a href="mission.html">Education</a></li><li><a href="mission.html">Mental Health</a></li></ul></div>
     <div><h4>Organisation</h4><ul><li><a href="about.html">About Us</a></li><li><a href="about.html">How It Works</a></li><li><a href="stories.html">Stories</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
-    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html">Monthly Giving</a></li><li><a href="donate.html">Contact</a></li></ul></div>
+    <div><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate-card.html">Pay by Card</a></li><li><a href="donate-transfer.html">Bank Transfer</a></li><li><a href="donate-crypto.html">Crypto</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Hope for the Children. All rights reserved. EIN: 12-3456789</p>
