@@ -42,41 +42,58 @@
     position: absolute; bottom: 3rem; left: 2rem; right: 2rem;
     background: rgba(28,23,16,0.6); backdrop-filter: blur(8px);
     border-left: 3px solid var(--gold-light);
-    padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; color: rgba(255,255,255,0.9);
-    z-index: 2;
+    padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; color: rgba(255,255,255,0.9); z-index: 2;
   }
   .hero-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.5; }
   .hero-quote cite { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.5rem; display: block; }
 
   /* CERTIFICATIONS */
-  .certifications {
-    background: var(--warm-white); padding: 2.5rem 4rem;
-    border-bottom: 1px solid var(--border); text-align: center;
-  }
+  .certifications { background: var(--charcoal); padding: 5rem 4rem; text-align: center; }
   .cert-label {
-    font-size: 0.72rem; font-weight: 500; color: var(--muted);
-    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.75rem;
+    font-size: 0.75rem; font-weight: 500; color: var(--gold-light);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
   }
-  .cert-logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .cert-label::before, .cert-label::after { content: ''; width: 3rem; height: 1px; background: var(--gold); display: block; }
+  .cert-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300;
+    color: var(--cream); margin-bottom: 3rem; line-height: 1.2;
+  }
+  .cert-heading em { color: var(--gold-light); font-style: italic; }
+  .cert-logos { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
   .cert-item {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 0 3rem; transition: transform 0.2s;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.2);
+    border-radius: 6px; padding: 2rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 1rem; transition: all 0.3s; position: relative; overflow: hidden;
   }
-  .cert-item:hover { transform: translateY(-2px); }
-  .cert-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    background: rgba(200,146,42,0.08); border: 1px solid var(--border);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  .cert-item::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--terra));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
   }
-  .cert-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .cert-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); white-space: nowrap; }
-  .cert-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; white-space: nowrap; }
-  .cert-divider { width: 1px; height: 40px; background: var(--border); flex-shrink: 0; }
+  .cert-item:hover { transform: translateY(-4px); border-color: rgba(200,146,42,0.5); background: rgba(255,255,255,0.07); }
+  .cert-item:hover::before { transform: scaleX(1); }
+  .cert-logo-wrap {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(200,146,42,0.1); border: 2px solid rgba(200,146,42,0.3);
+    display: flex; align-items: center; justify-content: center; font-size: 2rem;
+  }
+  .cert-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--cream); text-align: center; line-height: 1.2; }
+  .cert-sub { font-size: 0.75rem; color: rgba(250,245,236,0.45); text-align: center; line-height: 1.5; }
+  .cert-badge {
+    display: inline-block; padding: 0.3rem 0.8rem;
+    background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3);
+    border-radius: 20px; font-size: 0.68rem; color: var(--gold-light);
+    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
+  }
 
   /* MISSION STRIP */
   .mission-strip {
     background: var(--charcoal); padding: 3rem 4rem;
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    border-top: 1px solid rgba(200,146,42,0.15);
   }
   .strip-item { display: flex; align-items: flex-start; gap: 1rem; padding-right: 2rem; border-right: 1px solid rgba(200,146,42,0.15); }
   .strip-item:last-child { border-right: none; }
@@ -136,9 +153,8 @@
     .hero { grid-template-columns: 1fr; }
     .hero-right { min-height: 50vh; }
     .hero-left { padding: 8rem 2rem 3rem; }
-    .certifications { padding: 2rem; }
-    .cert-item { padding: 1rem 1.5rem; }
-    .cert-divider { display: none; }
+    .certifications { padding: 3rem 2rem; }
+    .cert-logos { grid-template-columns: repeat(2,1fr); }
     .mission-strip { grid-template-columns: repeat(2,1fr); padding: 3rem 2rem; }
     .strip-item { border-right: none; border-bottom: 1px solid rgba(200,146,42,0.15); padding-bottom: 1.5rem; }
     .stories-preview { padding: 4rem 2rem; }
@@ -151,7 +167,7 @@
     .mission-strip { grid-template-columns: 1fr; }
     .hero-stats { gap: 1.5rem; }
     .newsletter-form { flex-direction: column; }
-    .cert-item { padding: 0.75rem 1rem; width: 100%; justify-content: center; }
+    .cert-logos { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -185,26 +201,32 @@
 
 <!-- CERTIFICATIONS -->
 <div class="certifications">
-  <div class="cert-label">Certified & Accredited By</div>
+  <div class="cert-label">Our Accreditations</div>
+  <div class="cert-heading">Trusted, verified & <em>internationally recognised</em></div>
   <div class="cert-logos">
     <div class="cert-item">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
-      <div class="cert-text"><div class="cert-name">UN ECOSOC</div><div class="cert-sub">United Nations Consultative Status</div></div>
+      <div class="cert-logo-wrap">🌐</div>
+      <div class="cert-name">UN ECOSOC</div>
+      <div class="cert-sub">United Nations Economic & Social Council Consultative Status</div>
+      <span class="cert-badge">✓ Verified</span>
     </div>
-    <div class="cert-divider"></div>
     <div class="cert-item">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <div class="cert-text"><div class="cert-name">Charity Navigator</div><div class="cert-sub">4-Star Rated Organisation</div></div>
+      <div class="cert-logo-wrap">⭐</div>
+      <div class="cert-name">Charity Navigator</div>
+      <div class="cert-sub">4-Star Rated Organisation — Highest Possible Rating</div>
+      <span class="cert-badge">★★★★ 4-Star</span>
     </div>
-    <div class="cert-divider"></div>
     <div class="cert-item">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
-      <div class="cert-text"><div class="cert-name">ISO Certified</div><div class="cert-sub">International Standards Organisation</div></div>
+      <div class="cert-logo-wrap">🏅</div>
+      <div class="cert-name">ISO Certified</div>
+      <div class="cert-sub">International Organisation for Standardisation — Quality Management</div>
+      <span class="cert-badge">✓ Certified</span>
     </div>
-    <div class="cert-divider"></div>
     <div class="cert-item">
-      <div class="cert-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-      <div class="cert-text"><div class="cert-name">GlobalGiving</div><div class="cert-sub">Vetted & Approved Partner</div></div>
+      <div class="cert-logo-wrap">🌍</div>
+      <div class="cert-name">GlobalGiving</div>
+      <div class="cert-sub">Vetted & Approved Partner — Global Giving Network</div>
+      <span class="cert-badge">✓ Approved</span>
     </div>
   </div>
 </div>
